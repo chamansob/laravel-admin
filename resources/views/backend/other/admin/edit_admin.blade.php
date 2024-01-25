@@ -1,13 +1,13 @@
 <x-main-layout>
-  <div class="seperator-header layout-top-spacing">
+    <div class="seperator-header layout-top-spacing">
         <a href="{{ route('add.admin') }}">
-            <h4 class="">Add Admin</h4>
+            <h4 class="">Add Staff</h4>
         </a>
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 
     <div class="page-content">
-       
+
 
 
         <div class="row">
@@ -15,57 +15,107 @@
                 <div class="card">
                     <div class="card-body">
 
-                        <h6 class="card-title fw-bold">Edit Admin </h6>
-
-                        <form id="myForm" method="POST" action="{{ route('update.admin', $user->id) }}"
-                            class="forms-sample">
-                            @csrf
+                        <h6 class="card-title fw-bold">Edit Staff </h6>
 
 
-                            <div class="form-group mb-3">
-                                <label for="exampleInputEmail1" class="form-label">Admin User Name </label>
-                                <input type="text" name="username" class="form-control" value="{{ $user->username }}">
+                        {!! Form::open([
+                            'method' => 'post',
+                            'route' => ['update.admin', $user->id],
+                            'class' => 'forms-sample needs-validation',
+                            'novalidate' => 'novalidate',
+                        ]) !!}
+                        <div class="row">
+
+                            <div class="mb-3">
+
+                                {!! Form::label('username', 'User Name', ['class' => 'form-label']) !!}
+
+                                {!! Form::text('username', $value = $user->username, ['class' => 'form-control','required' => 'required', 'placeholder' => 'User Name']) !!}
+                                @error('username')
+                                    <span class="text-danger pt-3">{{ $message }}</span>
+                                @enderror
+
+
+
                             </div>
 
-                            <div class="form-group mb-3">
-                                <label for="exampleInputEmail1" class="form-label">Admin Name </label>
-                                <input type="text" name="name" class="form-control" value="{{ $user->name }}">
+                        </div>
+                        <div class="row">
+                            <div class="mb-3">
+                                {!! Form::label('name', 'Full Name', ['class' => 'form-label']) !!}
+
+                                {!! Form::text('name', $value = $user->name, ['class' => 'form-control','required' => 'required', 'placeholder' => 'Full Name']) !!}
+                                @error('name')
+                                    <span class="text-danger pt-3">{{ $message }}</span>
+                                @enderror
                             </div>
+                        </div>
+                        <div class="row">
+                            <div class="mb-3">
+                                {!! Form::label('email', 'Email', ['class' => 'form-label']) !!}
 
-                            <div class="form-group mb-3">
-                                <label for="exampleInputEmail1" class="form-label">Admin Email </label>
-                                <input type="email" name="email" class="form-control" value="{{ $user->email }}">
+                                {!! Form::text('email', $value = $user->email, ['class' => 'form-control','required' => 'required', 'placeholder' => 'Email']) !!}
+                                @error('email')
+                                    <span class="text-danger pt-3">{{ $message }}</span>
+                                @enderror
                             </div>
+                        </div>
+                        <div class="row">
+                            <div class="mb-3">
+                                {!! Form::label('phone', 'Phone', ['class' => 'form-label']) !!}
 
-
-                            <div class="form-group mb-3">
-                                <label for="exampleInputEmail1" class="form-label">Admin Phone </label>
-                                <input type="text" name="phone" class="form-control" value="{{ $user->phone }}">
+                                {!! Form::text('phone', $value = $user->phone, ['class' => 'form-control', 'placeholder' => 'Phone']) !!}
+                                @error('phone')
+                                    <span class="text-danger pt-3">{{ $message }}</span>
+                                @enderror
                             </div>
+                        </div>
 
 
+                        <div class="row">
+                            <div class="mb-3">
+                                {!! Form::label('address', 'Address', ['class' => 'form-label']) !!}
 
-                            <div class="form-group mb-3">
-                                <label for="exampleInputEmail1" class="form-label">Admin Address </label>
-                                <input type="text" name="address" class="form-control" value="{{ $user->address }}">
+                                {!! Form::text('address', $value = $user->address, ['class' => 'form-control', 'placeholder' => 'Address']) !!}
+                                @error('address')
+                                    <span class="text-danger pt-3">{{ $message }}</span>
+                                @enderror
                             </div>
+                        </div>
 
 
+                        <div class="row">
+                            <div class="mb-3">
+                                {!! Form::label('password', 'Password', ['class' => 'form-label']) !!}
 
-                            <div class="form-group mb-3">
-                                <label for="exampleInputEmail1" class="form-label">Role Name </label>
-                                <select name="roles" class="form-select" id="exampleFormControlSelect1">
-                                    <option selected="" disabled="">Select Role</option>
-                                    @foreach ($roles as $role)
-                                        <option value="{{ $role->id }}"
-                                            {{ $user->hasRole($role->name) ? 'selected' : '' }}>{{ $role->name }}
-                                        </option>
-                                    @endforeach
-                                </select>
+                                {!! Form::password('password', ['class' => 'form-control', 'placeholder' => 'Password']) !!}
+                                @error('password')
+                                    <span class="text-danger pt-3">{{ $message }}</span>
+                                @enderror
                             </div>
+                        </div>
 
 
-                            <button type="submit" class="btn btn-primary me-2">Save Changes </button>
+
+                        <div class="row">
+                            <div class="mb-3">
+                                {!! Form::label('roles', 'Role Name', ['class' => 'form-label']) !!}
+
+                                {!! Form::select('roles', $value = $roles, $user->roles[0]->id, [
+                                    'class' => 'form-control',
+                                    'placeholder' => 'Select Roles',
+                                ]) !!}
+                                @error('roles')
+                                    <span class="text-danger pt-3">{{ $message }}</span>
+                                @enderror
+                            </div>
+                        </div>
+
+
+
+
+
+                        <button type="submit" class="btn btn-primary me-2">Save Changes </button>
 
                         </form>
 

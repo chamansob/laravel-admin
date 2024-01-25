@@ -11,7 +11,8 @@ use App\Http\Controllers\Backend\MenugroupController;
 use App\Http\Controllers\Backend\ModuleController;
 use App\Http\Controllers\Backend\PageController;
 use App\Http\Controllers\Backend\RoleController;
-use App\Http\Controllers\backend\UserRoleController;
+use App\Http\Controllers\Backend\SliderController;
+use App\Http\Controllers\Backend\UserRoleController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\RedirectIfAuthenticated;
@@ -45,6 +46,11 @@ Route::middleware(['auth', 'roles:admin'])->prefix('admin')->group(function () {
     Route::resource('modules', ModuleController::class)->middleware('can:module.index, module.create, module.update');
     Route::post('/modules/status', [ModuleController::class, 'StatusUpdate'])->middleware('can:module.status')->name('modules.status');
     Route::post('/modules/delete', [ModuleController::class, 'Delete'])->middleware('can:module.delete')->name('modules.delete');
+    
+    // Slider All Routes
+    Route::resource('sliders', SliderController::class)->middleware('can:sliders.index, sliders.create, sliders.update');
+    Route::post('/sliders/status', [SliderController::class, 'StatusUpdate'])->middleware('can:sliders.status')->name('sliders.status');
+    Route::post('/sliders/delete', [SliderController::class, 'Delete'])->middleware('can:sliders.delete')->name('sliders.delete');
 
     // Blog All Routes
     Route::resource('blog', BlogController::class)->middleware('can:blog.index, blog.create, blog.update');

@@ -14,7 +14,7 @@ class BlogcategoryController extends Controller
      */
     public function index()
     {
-        $category = Blogcategory::latest()->get();
+        $category = Blogcategory::latest()->get(['id', 'category_name', 'category_slug']);
         return view('backend.blogcategory.all_blogcategory', compact('category'));
     }
 

@@ -21,6 +21,7 @@ return new class extends Migration
             $table->text('short_descp')->nullable();
             $table->text('long_descp')->nullable();
             $table->string('post_tags')->nullable();
+            $table->boolean('status')->default(0);
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent();
         });

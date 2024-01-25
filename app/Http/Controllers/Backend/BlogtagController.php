@@ -14,7 +14,7 @@ class BlogtagController extends Controller
      */
     public function index()
     {
-        $tags = Blogtag::latest()->get();
+        $tags = Blogtag::latest()->get(['id', 'tag_name', 'tag_slug']);
         return view(
             'backend.blog_tag.all_tag',
             compact('tags')

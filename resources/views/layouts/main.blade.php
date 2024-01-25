@@ -28,6 +28,8 @@
     <link href="{{ asset('backend/assets/src/assets/css/light/components/font-icons.css')}}" rel="stylesheet" type="text/css">
     <link href="{{ asset('backend/assets/src/assets/css/dark/components/font-icons.css')}}" rel="stylesheet" type="text/css">
     
+     <link href="{{ asset('backend/assets/src/assets/css/light/scrollspyNav.css')}}" rel="stylesheet" type="text/css" />
+      <link href="{{ asset('backend/assets/src/assets/css/light/scrollspyNav.css')}}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('backend/assets/src/plugins/src/sweetalerts2/sweetalerts2.css')}}" rel="stylesheet" type="text/css" >
     <link href="{{ asset('backend/assets/src/plugins/css/light/sweetalerts2/custom-sweetalert.css')}}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('backend/assets//src/plugins/css/dark/sweetalerts2/custom-sweetalert.css')}}" rel="stylesheet" type="text/css" />
@@ -37,6 +39,8 @@
     <link href="{{ asset('backend/assets/src/plugins/css/light/table/datatable/custom_dt_miscellaneous.css')}}" rel="stylesheet" type="text/css">
     <link href="{{ asset('backend/assets/src/plugins/css/dark/table/datatable/dt-global_style.css')}}" rel="stylesheet" type="text/css">
     <link href="{{ asset('backend/assets/src/plugins/css/dark/table/datatable/custom_dt_miscellaneous.css')}}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('backend/assets/src/plugins/src/select2/select2.min.css')}}" rel="stylesheet" type="text/css">
+    
    <!-- Scripts -->
      @vite(['resources/js/app.js'])
 </head>
@@ -103,6 +107,7 @@
 <!-- Toastr js for this page -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <script>
+      
         @if (Session::has('message'))
             var type = "{{ Session::get('alert-type', 'info') }}"
             switch (type) {
@@ -141,6 +146,14 @@
     <script src="{{ asset('backend/assets/src/plugins/src/table/datatable/button-ext/buttons.html5.min.js')}}"></script>
     <script src="{{ asset('backend/assets/src/plugins/src/table/datatable/button-ext/buttons.print.min.js')}}"></script>
     <script src="{{ asset('backend/assets/src/plugins/src/table/datatable/custom_miscellaneous.js')}}"></script>
+
+    <script src="{{ asset('backend/assets/src/plugins/src/select2/select2.min.js')}}"></script>
+    <script src="{{ asset('backend/assets/src/plugins/src/select2/custom-select2.js')}}"></script>
+    <script>
+        $(".tagging").select2({
+    tags: true
+});
+</script>
     <!-- END PAGE LEVEL SCRIPTS -->    
 </body>
 </html>

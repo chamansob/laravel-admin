@@ -14,7 +14,7 @@ class ImagePresetsController extends Controller
      */
     public function index()
     {
-        $image_preset = ImagePresets::all();
+        $image_preset = ImagePresets::all(['id','name','width','height','status']);
         return view('backend.image_preset.all_image_pre', compact('image_preset'));
     }
 

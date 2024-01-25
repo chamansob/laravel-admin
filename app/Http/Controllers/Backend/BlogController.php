@@ -26,7 +26,7 @@ class BlogController extends Controller
     }
     public function index()
     {
-        $blog = Blog::latest()->get();
+        $blog = Blog::latest()->get(['id', 'blogcat_id', 'post_title', 'post_image','status','created_at']);
         return view('backend.blog.all_blog', compact('blog'));
     }
 

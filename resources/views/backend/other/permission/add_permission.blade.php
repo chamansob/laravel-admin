@@ -36,7 +36,8 @@
                                     <option value="menus">Menu </option>   
                                     <option value="menugroup">Menu Group </option>           
                                     <option value="pages">Pages </option>                                 
-                                    <option value="module">Module</option>                                   
+                                    <option value="module">Module</option>    
+                                    <option value="slider">Slider</option>                                
                                     <option value="testimonials">Testimonials</option>                                   
                                     <option value="category">Blog Category</option>
                                     <option value="blog">Blog Post</option>     

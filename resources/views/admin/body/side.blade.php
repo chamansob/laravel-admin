@@ -180,6 +180,33 @@
                      </ul>
                  </li>
              @endif
+             @if (Auth::user()->can('sliders.menu'))
+                 <li class="menu">
+                     <a href="#sliders" data-bs-toggle="collapse"
+                         aria-expanded="{{ is_active_route('admin/sliders') }}" aria-controls="sliders"
+                         class="dropdown-toggle">
+                         <div class="">
+                             <i data-feather="menu"></i> <span>{{ __('Slider') }}</span>
+                         </div>
+                         <div>
+                             <i data-feather="chevron-right"></i>
+                         </div>
+                     </a>
+                     <ul class="collapse submenu list-unstyled {{ show_class('admin/sliders') }}" id="sliders"
+                         data-bs-parent="#accordionExample">
+                         @if (Auth::user()->can('sliders.index'))
+                             <li class="{{ active_class('admin/sliders/create') }}">
+                                 <a href="{{ route('sliders.create') }}"> {{ __('Add Slider') }} </a>
+                             </li>
+                         @endif
+                         @if (Auth::user()->can('sliders.create'))
+                             <li class="{{ active_class('admin/sliders') }}">
+                                 <a href="{{ route('sliders.index') }}"> {{ __('Show Slider') }} </a>
+                             </li>
+                         @endif
+                     </ul>
+                 </li>
+             @endif
              @if (Auth::user()->can('blog.menu'))
                  <li class="menu">
                      <a href="#blog" data-bs-toggle="collapse"
@@ -284,7 +311,7 @@
                          aria-expanded="{{ is_active_route('admin/add/admin') }}" aria-controls="admin"
                          class="dropdown-toggle">
                          <div class="">
-                             <i data-feather="menu"></i> <span>{{ __('Manage Admin User') }}</span>
+                             <i data-feather="menu"></i> <span>{{ __('Manage Staff') }}</span>
                          </div>
                          <div>
                              <i data-feather="chevron-right"></i>
@@ -294,12 +321,12 @@
                          data-bs-parent="#accordionExample">
                          @if (Auth::user()->can('all.admin'))
                              <li class="{{ active_class('admin/add/admin') }}">
-                                 <a href="{{ route('add.admin') }}"> {{ __('Add Admin') }} </a>
+                                 <a href="{{ route('add.admin') }}"> {{ __('Add Staff') }} </a>
                              </li>
                          @endif
                          @if (Auth::user()->can('add.admin'))
                              <li class="{{ active_class('admin/all/admin') }}">
-                                 <a href="{{ route('all.admin') }}"> {{ __('Show Admin') }} </a>
+                                 <a href="{{ route('all.admin') }}"> {{ __('Show Staff') }} </a>
                              </li>
                          @endif
                      </ul>

@@ -44,7 +44,7 @@ class AdminController extends Controller
     public function AddAdmin()
     {
 
-        $roles = Role::all();
+        $roles = Role::pluck('name','id');
         return view('backend.other.admin.add_admin', compact('roles'));
     } // End Method 
 
@@ -52,6 +52,13 @@ class AdminController extends Controller
     public function StoreAdmin(Request $request)
     {
 
+       
+        if($request->roles==4)
+        {
+            $role='user';  
+        }else{
+            $role = 'admin';  
+        }
         $user = new User();
         $user->username = $request->username;
         $user->name = $request->name;
@@ -59,7 +66,7 @@ class AdminController extends Controller
         $user->phone = $request->phone;
         $user->about = $request->about;
         $user->password =  Hash::make($request->password);
-        $user->role = 'admin';
+        $user->role = $role;
         $user->status = 0;
         $user->save();
 
@@ -68,7 +75,7 @@ class AdminController extends Controller
         }
 
         $notification = array(
-            'message' => 'New Admin User Inserted Successfully',
+            'message' => 'New Staff Inserted Successfully',
             'alert-type' => 'success'
         );
 
@@ -78,7 +85,7 @@ class AdminController extends Controller
     {
 
         $user = User::findOrFail($id);
-        $roles = Role::all();
+        $roles = Role::pluck('name', 'id');
         return view('backend.other.admin.edit_admin', compact('user', 'roles'));
     } // End Method
 
@@ -101,7 +108,7 @@ class AdminController extends Controller
         }
 
         $notification = array(
-            'message' => 'New Admin User Updated Successfully',
+            'message' => 'Staff Updated Successfully',
             'alert-type' => 'success'
         );
 
@@ -117,7 +124,7 @@ class AdminController extends Controller
         }
 
         $notification = array(
-            'message' => 'Admin User Deleted Successfully',
+            'message' => 'Staff Deleted Successfully',
             'alert-type' => 'success'
         );
 

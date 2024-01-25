@@ -1,7 +1,7 @@
 <x-main-layout>
     <div class="seperator-header layout-top-spacing">
-        <a href="{{ route('modules.index') }}">
-            <h4 class="">Show Module</h4>
+        <a href="{{ route('sliders.index') }}">
+            <h4 class="">Show Slider</h4>
         </a>
     </div>
     <div class="page-content">
@@ -9,10 +9,10 @@
             <div class="col-md-12 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body">
-                        <h6 class="card-title fw-bold">Edit Module</h6>
+                        <h6 class="card-title fw-bold">Edit Slider</h6>
                         {!! Form::open([
                             'method' => 'put',
-                            'route' => ['modules.update', $module->id],
+                            'route' => ['sliders.update', $slider->id],
                             'class' => 'forms-sample needs-validation',
                             'novalidate' => 'novalidate',
                             'files' => true,
@@ -22,7 +22,7 @@
 
                             {!! Form::label('name', 'Name', ['class' => 'form-label']) !!}
 
-                            {!! Form::text('name', $module->name, ['class' => 'form-control','required' => 'required', 'placeholder' => 'Name']) !!}
+                            {!! Form::text('name', $slider->name, ['class' => 'form-control','required' => 'required', 'placeholder' => 'Name']) !!}
                             @error('name')
                                 <span class="text-danger pt-3">{{ $message }}</span>
                             @enderror
@@ -31,27 +31,17 @@
 
                             {!! Form::label('heading', 'Heading', ['class' => 'form-label']) !!}
 
-                            {!! Form::text('heading', $module->heading, ['class' => 'form-control','required' => 'required', 'placeholder' => 'Heading']) !!}
+                            {!! Form::text('heading', $slider->heading, ['class' => 'form-control','required' => 'required', 'placeholder' => 'Heading']) !!}
 
                         </div>
                         <div class="mb-3">
 
-                            {!! Form::label('link', 'Link', ['class' => 'form-label']) !!}
+                            {!! Form::label('small', 'Small text', ['class' => 'form-label']) !!}
 
-                            {!! Form::text('link', $module->link, ['class' => 'form-control', 'placeholder' => 'Link']) !!}
-
-                        </div>
-                        <div class="mb-3">
-
-                            {!! Form::label('small_text', 'Small text', ['class' => 'form-label']) !!}
-
-                            {!! Form::textarea('small_text', $module->small_text, [
-                                'class' => 'form-control',
-                                'rows' => 3,
-                                'placeholder' => 'Small Text',
-                            ]) !!}
+                            {!! Form::text('small', $slider->small, ['class' => 'form-control', 'placeholder' => 'Small text']) !!}
 
                         </div>
+                       
                         <div class="row">
                             <div class="col-sm-10">
                                 <div class="mb-3">
@@ -63,7 +53,7 @@
                                         'placeholder' => 'Image',
                                         'onchange' => 'mainThamUrl(this)',
                                     ]) !!}
-                                    @error('module_image')
+                                    @error('image')
                                         <span class="text-danger pt-3">{{ $message }}</span>
                                     @enderror
                                     <div class="mt-3"><img src="" id="mainThmb"
@@ -74,8 +64,8 @@
                                 </div>
                             </div>
                             @php
-                                if (!empty($module->image)) {
-                                    $img = explode('.', $module->image);
+                                if (!empty($slider->image)) {
+                                    $img = explode('.', $slider->image);
                                     $small_img = $img[0] . '_thumb.' . $img[1];
                                 } else {
                                     $small_img = '/upload/no_image.jpg'; # code...
@@ -88,7 +78,7 @@
 
                             {!! Form::label('text', 'Text', ['class' => 'form-label']) !!}
 
-                            {!! Form::textarea('text', $module->text, ['class' => 'form-control', 'placeholder' => 'Text']) !!}
+                            {!! Form::textarea('text', $slider->text, ['class' => 'form-control', 'placeholder' => 'Text']) !!}
 
                         </div>
 
@@ -101,7 +91,7 @@
                             ?>
                             {!! Form::label('status', 'Status', ['class' => 'form-label']) !!}
 
-                            {!! Form::Select('status', $status, $module->status, [
+                            {!! Form::Select('status', $status, $slider->status, [
                                 'class' => 'form-control',
                                 'placeholder' => 'Select Status',
                             ]) !!}

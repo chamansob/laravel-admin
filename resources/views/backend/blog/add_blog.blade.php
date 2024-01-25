@@ -1,6 +1,6 @@
 <x-main-layout>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+ 
  <div class="seperator-header layout-top-spacing">
         <a href="{{ route('blog.index') }}">
             <h4 class="">Show Blog</h4>
@@ -92,11 +92,11 @@
                             <div class="mb-3">
                                 {!! Form::label('post_tags', 'Post Tags', ['class' => 'form-label']) !!}
                                 {!! Form::select('post_tags[]', $value = $post_tags, null, [
-                                    'class' => 'form-control js-example-basic-multiple',
+                                    'class' => 'form-control  tagging',                                  
                                     'multiple' => true,
                                 ]) !!}
 
-
+                                <input name='users-list-tags' value='abatisse2@nih.gov, Justinian Hattersley'>
 
                             </div><!-- Col -->
                         </div>
@@ -121,4 +121,7 @@
             }
         }
     </script>
+    
+    
+    
 </x-main-layout>
