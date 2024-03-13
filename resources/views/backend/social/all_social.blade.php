@@ -2,8 +2,8 @@
     @section('title', breadcrumb())
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
     <div class="seperator-header layout-top-spacing">
-        <a href="{{ route('modules.create') }}">
-            <h4 class="">Add Module</h4>
+        <a href="{{ route('social.create') }}">
+            <h4 class="">Add Social</h4>
         </a>
     </div>
     <div class="page-content">
@@ -15,39 +15,27 @@
                         <table id="html5-extension" class="table dt-table-hover">
                             <thead>
                                 <tr>
-                                    <th>-</th>
                                     <th>ID</th>
-                                    <th>Image</th>
-                                    <th>Name</th>
+                                    <th>Title</th>
+                                    <th>Url</th>
+                                    <th>Class</th>
                                     <th class="text-center">Status</th>
                                     <th class="text-center">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($modules as $module)
-                                    <tr class="module-{{ $module->id }}">
-                                        <td style="width:1%"><span class="form-check form-check-primary"><input
-                                                    class="form-check-input mixed_child " value="{{ $module->id }}"
-                                                    type="checkbox"></span></td>
-                                        <td>{{ $module->id }}</td>
-                                        <td>@php
-                                            if (!empty($module->image)) {
-                                                $img = explode('.', $module->image);
-                                                $small_img = $img[0] . '_thumb.' . $img[1];
-                                            } else {
-                                                $small_img = '/upload/no_image.jpg'; # code...
-                                            }
-                                        @endphp
-                                            <img src="{{ asset($small_img) }}"
-                                                class="rounded-circle profile-img border border-dark w-25">
-                                        </td>
-                                        <td>{{ !empty($module->name) ? $module->name : '-' }}</td>
+                                @foreach ($socials as $social)
+                                    <tr class="social-{{ $social->id }}">
+                                        <td>{{ $social->id }}</td>
 
+                                        <td>{{ !empty($social->title) ? $social->title : '-' }}</td>
+                                        <td>{{ !empty($social->url) ? $social->url : '-' }}</td>
+                                        <td>{{ !empty($social->class) ? $social->class : '-' }}</td>
                                         <td class="text-center">
-                                            <button type="button" onClick="statusFunction({{ $module->id }},'Module')"
-                                                class="shadow-none badge badge-light-{{ $module->status == 1 ? 'danger' : 'success' }} warning changestatus{{ $module->id }}  bs-tooltip"
+                                            <button type="button" onClick="statusFunction({{ $social->id }},'Social')"
+                                                class="shadow-none badge badge-light-{{ $social->status == 1 ? 'danger' : 'success' }} warning changestatus{{ $social->id }}  bs-tooltip"
                                                 data-toggle="tooltip" data-placement="top" title="Status"
-                                                data-original-title="Status">{{ $module->status == 1 ? 'Deactive' : 'Active' }}</button>
+                                                data-original-title="Status">{{ $social->status == 1 ? 'Deactive' : 'Active' }}</button>
 
                                         </td>
 
@@ -55,14 +43,14 @@
                                             <div class="action-btns">
 
 
-                                                <a href="{{ route('modules.edit', $module->id) }}"
+                                                <a href="{{ route('social.edit', $social->id) }}"
                                                     class="action-btn btn-edit bs-tooltip me-2" data-toggle="tooltip"
                                                     data-placement="top" title="Edit" data-bs-original-title="Edit">
                                                     <i data-feather="edit"></i>
                                                 </a>
 
-                                                <a href="#" onClick="deleteFunction({{ $module->id }},'Module')"
-                                                    class="action-btn btn-edit bs-tooltip me-2 delete{{ $module->id }}"
+                                                <a href="#" onClick="deleteFunction({{ $social->id }},'Social')"
+                                                    class="action-btn btn-edit bs-tooltip me-2 delete{{ $social->id }}"
                                                     data-toggle="tooltip" data-placement="top" title="Delete"
                                                     data-bs-original-title="Delete">
                                                     <i data-feather="trash-2"></i>
@@ -76,13 +64,6 @@
                                 @endforeach
                             </tbody>
                         </table>
-                        @if ($modules->count() != 0)
-                            <div class="ms-3">
-                                <button id="deleteall" onClick="deleteAllFunction('Module')" class="btn btn-danger mb-2 me-4">
-                                    <span class="btn-text-inner">Delete Selected</span>
-                                </button>
-                            </div>
-                        @endif
                     </div>
                 </div>
             </div>
@@ -92,47 +73,10 @@
 
 
     </div>
-    @if ($modules->count() != 0)
+    @if ($socials->count() != 0)
         <script type="text/javascript">
-           function deleteAllFunction(table)  {
-                // Get all checkboxes with the specified class name
-                var checkboxes = document.querySelectorAll('.mixed_child');
-                // Initialize an array to store checked checkbox values
-                var checkedValues = [];
-                // Iterate through each checkbox
-                checkboxes.forEach(function(checkbox) {
-                    // Check if the checkbox is checked
-                    if (checkbox.checked) {
-                        // Add the value to the array
-                        checkedValues.push(checkbox.value);
-                    }
-                });
-                if (checkedValues.length === 0) {
-                    // Display an alert if none are checked               
-                    toastr.warning("Please check at least one checkbox.");
-                } else {
-                    // Output the array to the console (you can do whatever you want with the array)
-                    checkboxes.forEach(function(checkbox) {
-                        // Check if the checkbox is checked
-                        if (checkbox.checked) {
-                            // Add the value to the array
-                            checkedValues.push(checkbox.value);
-                            var elems = document.querySelector('.social-' + checkbox.value);
-                            elems.remove();
-                        }
-                    });
-                    // console.log("Checked Checkbox Values: ", checkedValues);
-                    var crf = '{{ csrf_token() }}';
-                    $.post("{{ route('modules.delete') }}", {
-                        _token: crf,
-                        id: checkedValues,table:table
-                    }, function(data) {
-                        toastr.success("Selected Data Deleted");
-                    });
-                }
-            }
-
             function statusFunction(id,table) {
+               
                 // event.preventDefault(); // prevent form submit
                 // var form = event.target.form; // storing the form
                 const swalWithBootstrapButtons = Swal.mixin({
@@ -161,10 +105,12 @@
                             )
                             setTimeout(function() {
                                 var crf = '{{ csrf_token() }}';
-                                $.post("{{ route('modules.status') }}", {
+                                $.post("{{ route('social.statusobj') }}", {
                                     _token: crf,
-                                    id: id,table:table
+                                    id: id,table:table,
+                                    table: table
                                 }, function(data) {
+                                   
                                     var elems = document.querySelector('.warning.changestatus' +
                                         id);
                                     if (data == 'active') {
@@ -225,10 +171,10 @@
                                 'Your file has been deleted.',
                                 'success'
                             )
-                            var elems = document.querySelector('.module-' + id);
+                            var elems = document.querySelector('.social-' + id);
                             elems.remove();
                             var crf = '{{ csrf_token() }}';
-                            $.post("{{ route('modules.delete') }}", {
+                            $.post("{{ route('social.delete') }}", {
                                 _token: crf,
                                 id: id,table:table
                             }, function(data) {

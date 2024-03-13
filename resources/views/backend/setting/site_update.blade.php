@@ -1,6 +1,5 @@
 <x-main-layout>
-
-
+    @section('title', breadcrumb())
     <div class="col-md-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
@@ -32,7 +31,7 @@
 
                                     {!! Form::file('logo', [
                                         'class' => 'form-control',
-                                        'placeholder' => 'Main Thumbnail',                                        
+                                        'placeholder' => 'Main Thumbnail',
                                         'onchange' => 'mainThamUrl(this)',
                                     ]) !!}
                                     @error('logo')
@@ -69,7 +68,7 @@
 
                                     {!! Form::file('favicon', [
                                         'class' => 'form-control',
-                                        'placeholder' => 'Main Thumbnail',                                       
+                                        'placeholder' => 'Main Thumbnail',
                                         'onchange' => 'mainThamUrl(this)',
                                     ]) !!}
                                     @error('favicon')
@@ -158,7 +157,8 @@
                         </div>
                     </div>
                 </div>
-
+                <h2>Footer Section</h2>
+                <hr>
                 <div class="row">
                     <div class="col-sm-4">
                         <div class="mb-3">
@@ -166,7 +166,7 @@
                             {!! Form::label('company_address', 'Company Address', ['class' => 'form-label']) !!}
 
                             {!! Form::text('company_address', $value = $sitesetting->company_address, [
-                                'class' => 'form-control',                            
+                                'class' => 'form-control',
                                 'placeholder' => 'Company Address',
                             ]) !!}
 
@@ -198,6 +198,62 @@
 
                     </div>
                 </div>
+                <div class="row">
+                    @php
+                        $stylelist = [
+                            'main',
+                            'alabama',
+                            'imperial-blue',
+                            'university',
+                            'cerulean',
+                            'bronze',
+                            'viridian-green',
+                            'amaranth',
+                            'yellow',
+                            'coquelicot',
+                            'viridian-green',
+                            'dark-cyan',
+                            'azure',
+                            'blue-green',
+                            'crimson',
+                            'cerulean',
+                            'blueberry',
+                            'burnt-orange',
+                            'lilac',
+                            'amber',
+                            'cg-blue',
+                            'ball-blue',
+                            'american-rose',
+                            'alizarin',
+                            'dark-pink',
+                            'lime-green',
+                            'cyan-cornflower',
+                            'blue-munsell',
+                            'violet',
+                            'orange-pantone',
+                            'magenta-violet',
+                            'forest-green',
+                            'debian-red',
+                            'go-green',
+                            'rich-carmine',
+                            'university',
+                            'charcoal',
+                            'cadmium',
+                            'fuchsia',
+                            'green-pantone',
+                            'amaranth',
+                        ];
+                    @endphp
+                    <div class="col-sm-1">
+                        <div class="mbox {{ $stylelist[$sitesetting->style] }}  rounded-2 "></div>
+                    </div>
+                    <div class="col-sm-11"> {!! Form::label('style', 'Color Style', ['class' => 'form-label']) !!}
+                        {!! Form::select('style', $stylelist, $sitesetting->style, [
+                            'class' => 'form-select mb-3',
+                            'placeholder' => 'Color Style',
+                        ]) !!}</div>
+                </div>
+
                 <div class="mb-3">
 
                     {!! Form::label('facebook', 'Facebook', ['class' => 'form-label']) !!}
@@ -239,11 +295,11 @@
                     <div class="col-sm-6">
                         <div class="mb-3">
 
-                            {!! Form::label('google', 'Google Plus', ['class' => 'form-label']) !!}
+                            {!! Form::label('instagram', 'Instagram', ['class' => 'form-label']) !!}
 
-                            {!! Form::text('google', $value = $sitesetting->google, [
+                            {!! Form::text('instagram', $value = $sitesetting->instagram, [
                                 'class' => 'form-control',
-                                'placeholder' => 'Google Plus',
+                                'placeholder' => 'Instagram',
                             ]) !!}
 
                         </div>
@@ -251,11 +307,11 @@
                     <div class="col-sm-6">
                         <div class="mb-3">
 
-                            {!! Form::label('vimeo', 'Vimeo', ['class' => 'form-label']) !!}
+                            {!! Form::label('vimeo', 'Youtube', ['class' => 'form-label']) !!}
 
-                            {!! Form::text('vimeo', $value = $sitesetting->vimeo, [
+                            {!! Form::text('youtube', $value = $sitesetting->youtube, [
                                 'class' => 'form-control',
-                                'placeholder' => 'Vimeo',
+                                'placeholder' => 'Youtube',
                             ]) !!}
 
                         </div>
@@ -263,7 +319,24 @@
                 </div>
 
 
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="mb-3">
 
+                            {!! Form::label('about', 'About', ['class' => 'form-label']) !!}
+
+                            {!! Form::textarea('about', $value = $sitesetting->about, [
+                                'class' => 'form-control',
+                            
+                                'placeholder' => 'About',
+                            ]) !!}
+                            @error('name')
+                                <span class="text-danger pt-3">{{ $message }}</span>
+                            @enderror
+                        </div>
+                    </div>
+
+                </div>
 
                 {!! Form::submit('Submit', ['class' => 'btn btn-primary _effect--ripple waves-effect waves-light']) !!}
                 {{ Form::close() }}
@@ -283,4 +356,4 @@
             }
         }
     </script>
-</x-main-layout>
+</x-dashboard-layout>

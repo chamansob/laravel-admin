@@ -1,8 +1,8 @@
 <x-main-layout>
     @section('title', breadcrumb())
     <div class="seperator-header layout-top-spacing">
-        <a href="{{ route('sliders.index') }}">
-            <h4 class="">Show Slider</h4>
+        <a href="{{ route('testimonials.index') }}">
+            <h4 class="">Show Testimonials</h4>
         </a>
     </div>
     <div class="page-content">
@@ -11,40 +11,50 @@
             <div class="col-md-12 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body">
-                        <h6 class="card-title fw-bold">Add Slider</h6>
+                        <h6 class="card-title fw-bold">Add Testimonials</h6>
 
                         {{ Form::open([
-                            'route' => 'sliders.store',
+                            'route' => 'testimonials.store',
                             'class' => 'forms-sample needs-validation',
                             'novalidate' => 'novalidate',
                             'method' => 'post',
                             'files' => true,
                         ]) }}
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="mb-3">
 
-                        <div class="mb-3">
+                                    {!! Form::label('name', 'Name', ['class' => 'form-label']) !!}
 
-                            {!! Form::label('name', 'Name', ['class' => 'form-label']) !!}
+                                    {!! Form::text('name', $value = null, [
+                                        'class' => 'form-control',
+                                        'required' => 'required',
+                                        'placeholder' => 'Name',
+                                    ]) !!}
+                                    @error('name')
+                                        <span class="text-danger pt-3">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="mb-3">
 
-                            {!! Form::text('name', $value = null, ['class' => 'form-control','required' => 'required', 'placeholder' => 'Name']) !!}
-                            @error('name')
-                                <span class="text-danger pt-3">{{ $message }}</span>
-                            @enderror
+                                    {!! Form::label('designation', 'Designation', ['class' => 'form-label']) !!}
+
+                                    {!! Form::text('designation', $value = null, [
+                                        'class' => 'form-control',
+                                        'required' => 'required',
+                                        'placeholder' => 'Designation',
+                                    ]) !!}
+                                    @error('designation')
+                                        <span class="text-danger pt-3">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                            </div>
                         </div>
-                        <div class="mb-3">
 
-                            {!! Form::label('heading', 'Heading', ['class' => 'form-label']) !!}
 
-                            {!! Form::text('heading', $value = null, ['class' => 'form-control','required' => 'required', 'placeholder' => 'Heading']) !!}
 
-                        </div>
-                        <div class="mb-3">
-
-                            {!! Form::label('small', 'Small Text', ['class' => 'form-label']) !!}
-
-                            {!! Form::text('small', $value = null, ['class' => 'form-control', 'placeholder' => 'Small Text']) !!}
-
-                        </div>
-                       
                         <div class="row">
 
                             <div class="mb-3">
@@ -64,7 +74,6 @@
 
                         </div>
                         <div class="mb-3">
-
                             {!! Form::label('text', 'Text', ['class' => 'form-label']) !!}
 
                             {!! Form::textarea('text', $value = null, ['class' => 'form-control', 'placeholder' => 'Text']) !!}
@@ -79,15 +88,4 @@
         </div>
 
     </div>
-     <script type="text/javascript">
-        function mainThamUrl(input) {
-            if (input.files && input.files[0]) {
-                var reader = new FileReader();
-                reader.onload = function(e) {
-                    $('#mainThmb').attr('src', e.target.result).width(80).height(80);
-                };
-                reader.readAsDataURL(input.files[0]);
-            }
-        }
-    </script>
 </x-main-layout>

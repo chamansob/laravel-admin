@@ -1,4 +1,5 @@
-<x-main-layout>
+<x-dashboard-layout>
+    @section('title', breadcrumb())
 <div class="seperator-header layout-top-spacing">
         <a href="{{ route('permission.create') }}">
             <h4 class="">Add Permission</h4>
@@ -36,7 +37,7 @@
         </div>
 
     </div>
-</x-main-layout>
+</x-dashboard-layout>
 
 <script>
         $(document).ready( function () {

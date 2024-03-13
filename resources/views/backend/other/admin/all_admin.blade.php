@@ -1,11 +1,12 @@
-<x-main-layout>
+<x-dashboard-layout>
+    @section('title', breadcrumb())
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 
     <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
  <div class="seperator-header layout-top-spacing">
         <a href="{{ route('add.admin') }}">
-            <h4 class="">Add Staff</h4>
+            <h4 class="">Add User</h4>
         </a>
     </div>
     <div class="page-content">
@@ -15,7 +16,7 @@
             <div class="col-md-12 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body">
-                        <h6 class="card-title fw-bold">All Staff</h6>
+                        <h6 class="card-title fw-bold">All User</h6>
 
                         <div class="table-responsive">
                             <table id="html5-extension" class="table dt-table-hover">
@@ -111,7 +112,7 @@
                             var crf = '{{ csrf_token() }}';
                             $.post("{{ route('delete.admin') }}", {
                                 _token: crf,
-                                id: id
+                                id: id,table:table
                             }, function(data) {
                               toastr.success("Entry no " + id + " Deleted");
                             });

@@ -1,4 +1,5 @@
-<x-main-layout>
+<x-dashboard-layout>
+    @section('title', breadcrumb())
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 
@@ -97,7 +98,7 @@
                             var crf = '{{ csrf_token() }}';
                             $.post("{{ route('roles.delete') }}", {
                                 _token: crf,
-                                id: id
+                                id: id,table:table
                             }, function(data) {
                                 toastr.success("Entry no " + id + " Deleted");
                             });

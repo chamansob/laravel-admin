@@ -2,8 +2,8 @@
     @section('title', breadcrumb())
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
     <div class="seperator-header layout-top-spacing">
-        <a href="{{ route('modules.create') }}">
-            <h4 class="">Add Module</h4>
+        <a href="{{ route('testimonials.create') }}">
+            <h4 class="">Add Testimonials</h4>
         </a>
     </div>
     <div class="page-content">
@@ -19,20 +19,22 @@
                                     <th>ID</th>
                                     <th>Image</th>
                                     <th>Name</th>
+                                    <th>Designation</th>
                                     <th class="text-center">Status</th>
                                     <th class="text-center">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($modules as $module)
-                                    <tr class="module-{{ $module->id }}">
+                                @foreach ($testimonials as $testimonial)
+                                    <tr class="testimonial-{{ $testimonial->id }}">
+
                                         <td style="width:1%"><span class="form-check form-check-primary"><input
-                                                    class="form-check-input mixed_child " value="{{ $module->id }}"
+                                                    class="form-check-input mixed_child " value="{{ $testimonial->id }}"
                                                     type="checkbox"></span></td>
-                                        <td>{{ $module->id }}</td>
+                                        <td>{{ $testimonial->id }}</td>
                                         <td>@php
-                                            if (!empty($module->image)) {
-                                                $img = explode('.', $module->image);
+                                            if (!empty($testimonial->image)) {
+                                                $img = explode('.', $testimonial->image);
                                                 $small_img = $img[0] . '_thumb.' . $img[1];
                                             } else {
                                                 $small_img = '/upload/no_image.jpg'; # code...
@@ -41,28 +43,28 @@
                                             <img src="{{ asset($small_img) }}"
                                                 class="rounded-circle profile-img border border-dark w-25">
                                         </td>
-                                        <td>{{ !empty($module->name) ? $module->name : '-' }}</td>
-
+                                        <td>{{ !empty($testimonial->name) ? $testimonial->name : '-' }}</td>
+                                        <td>{{ !empty($testimonial->designation) ? $testimonial->designation : '-' }}
+                                        </td>
                                         <td class="text-center">
-                                            <button type="button" onClick="statusFunction({{ $module->id }},'Module')"
-                                                class="shadow-none badge badge-light-{{ $module->status == 1 ? 'danger' : 'success' }} warning changestatus{{ $module->id }}  bs-tooltip"
+                                            <button type="button" onClick="statusFunction({{ $testimonial->id }},'testimonial')"
+                                                class="shadow-none badge badge-light-{{ $testimonial->status == 1 ? 'danger' : 'success' }} warning changestatus{{ $testimonial->id }}  bs-tooltip"
                                                 data-toggle="tooltip" data-placement="top" title="Status"
-                                                data-original-title="Status">{{ $module->status == 1 ? 'Deactive' : 'Active' }}</button>
+                                                data-original-title="Status">{{ $testimonial->status == 1 ? 'Deactive' : 'Active' }}</button>
 
                                         </td>
 
                                         <td class="text-center">
                                             <div class="action-btns">
 
-
-                                                <a href="{{ route('modules.edit', $module->id) }}"
+                                                <a href="{{ route('testimonials.edit', $testimonial->id) }}"
                                                     class="action-btn btn-edit bs-tooltip me-2" data-toggle="tooltip"
                                                     data-placement="top" title="Edit" data-bs-original-title="Edit">
                                                     <i data-feather="edit"></i>
                                                 </a>
 
-                                                <a href="#" onClick="deleteFunction({{ $module->id }},'Module')"
-                                                    class="action-btn btn-edit bs-tooltip me-2 delete{{ $module->id }}"
+                                                <a href="#" onClick="deleteFunction({{ $testimonial->id }},'testimonial')"
+                                                    class="action-btn btn-edit bs-tooltip me-2 delete{{ $testimonial->id }}"
                                                     data-toggle="tooltip" data-placement="top" title="Delete"
                                                     data-bs-original-title="Delete">
                                                     <i data-feather="trash-2"></i>
@@ -76,9 +78,9 @@
                                 @endforeach
                             </tbody>
                         </table>
-                        @if ($modules->count() != 0)
+                        @if ($testimonials->count() != 0)
                             <div class="ms-3">
-                                <button id="deleteall" onClick="deleteAllFunction('Module')" class="btn btn-danger mb-2 me-4">
+                                <button id="deleteall" onClick="deleteAllFunction('Testimonials')" class="btn btn-danger mb-2 me-4">
                                     <span class="btn-text-inner">Delete Selected</span>
                                 </button>
                             </div>
@@ -92,7 +94,7 @@
 
 
     </div>
-    @if ($modules->count() != 0)
+    @if ($testimonials->count() != 0)
         <script type="text/javascript">
            function deleteAllFunction(table)  {
                 // Get all checkboxes with the specified class name
@@ -123,9 +125,10 @@
                     });
                     // console.log("Checked Checkbox Values: ", checkedValues);
                     var crf = '{{ csrf_token() }}';
-                    $.post("{{ route('modules.delete') }}", {
+                    $.post("{{ route('testimonials.delete') }}", {
                         _token: crf,
-                        id: checkedValues,table:table
+                        id: checkedValues,
+                        table:table
                     }, function(data) {
                         toastr.success("Selected Data Deleted");
                     });
@@ -161,9 +164,10 @@
                             )
                             setTimeout(function() {
                                 var crf = '{{ csrf_token() }}';
-                                $.post("{{ route('modules.status') }}", {
+                                $.post("{{ route('testimonials.status') }}", {
                                     _token: crf,
-                                    id: id,table:table
+                                    id: id,
+                                    table:table
                                 }, function(data) {
                                     var elems = document.querySelector('.warning.changestatus' +
                                         id);
@@ -225,10 +229,10 @@
                                 'Your file has been deleted.',
                                 'success'
                             )
-                            var elems = document.querySelector('.module-' + id);
+                            var elems = document.querySelector('.testimonial-' + id);
                             elems.remove();
                             var crf = '{{ csrf_token() }}';
-                            $.post("{{ route('modules.delete') }}", {
+                            $.post("{{ route('testimonials.delete') }}", {
                                 _token: crf,
                                 id: id,table:table
                             }, function(data) {
@@ -248,9 +252,6 @@
                         }
                     })
                 })
-
-
-
             }
         </script>
     @endif

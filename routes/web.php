@@ -1,6 +1,6 @@
 <?php
 use Illuminate\Support\Facades\Route;
-
+use Spatie\Permission\Models\Permission;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,6 +14,9 @@ use Illuminate\Support\Facades\Route;
 */
 Route::view('/', 'welcome');
 
+Route::get('/per',function(){
+return Permission::select('name', 'guard_name','group_name')->get();
+});
 require __DIR__ . '/user.php';
 
 require __DIR__ . '/admin.php';

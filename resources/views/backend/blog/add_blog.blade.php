@@ -1,4 +1,5 @@
 <x-main-layout>
+    @section('title', breadcrumb())
 
  
  <div class="seperator-header layout-top-spacing">
