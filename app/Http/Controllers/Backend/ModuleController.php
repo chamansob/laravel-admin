@@ -101,8 +101,9 @@ class ModuleController extends Controller
             if ($module->state_image != '') {
                 $save_url = $module->image;
             } else {
+                $save_url = '';
             }
-            $save_url = '';
+           
         }
         $module->update([
             'name' => $request->name,
