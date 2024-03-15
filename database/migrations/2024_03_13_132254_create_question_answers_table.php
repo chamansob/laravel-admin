@@ -21,8 +21,9 @@ return new class extends Migration
             $table->integer('marks')->default(1);
             $table->string('right')->nullable();
             $table->string('solution',500)->nullable();           
-            $table->boolean('status')->default(0);      
-            $table->timestamps();
+            $table->boolean('status')->default(0);
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->useCurrent();
         });
     }
 

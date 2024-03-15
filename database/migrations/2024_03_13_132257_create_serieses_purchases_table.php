@@ -13,7 +13,14 @@ return new class extends Migration
     {
         Schema::create('serieses_purchases', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->integer('seriese_id');
+            $table->integer('student_id');
+            $table->integer('amount');
+            $table->date('paydate');
+            $table->enum('payby',['Online','Admin']);
+            $table->string('transaction_info', 50)->nullable();
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->useCurrent();
         });
     }
 

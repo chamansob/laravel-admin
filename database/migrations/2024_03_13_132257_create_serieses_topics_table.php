@@ -13,7 +13,18 @@ return new class extends Migration
     {
         Schema::create('serieses_topics', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->integer('seriese_id');
+            $table->string('name', 40)->nullable();
+            $table->integer('timer')->nullable();
+            $table->integer('marks')->nullable();
+            $table->integer('neg_mark')->nullable();
+            $table->date('start')->nullable();
+            $table->date('solve_date')->nullable();
+            $table->boolean('rand')->default(0);
+            $table->boolean('calculator')->default(0);
+            $table->boolean('status')->default(0);
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->useCurrent();
         });
     }
 

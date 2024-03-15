@@ -13,7 +13,16 @@ return new class extends Migration
     {
         Schema::create('results', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->integer('topic_id');
+            $table->integer('student_id');
+            $table->mediumtext('qts');
+            $table->answer('qts');
+            $table->mediumtext('marks_obtain');
+            $table->integer('attempt');
+            $table->timestamp('start_date');
+            $table->timestamp('end_date');
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->useCurrent();
         });
     }
 
