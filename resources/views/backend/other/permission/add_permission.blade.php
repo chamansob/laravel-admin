@@ -38,24 +38,14 @@
                                     <option value="menugroup">Menu Group </option>
                                     <option value="pages">Pages </option>
                                     <option value="module">Module</option>
-                                    <option value="slider">Slider</option>
-                                    <option value="counters">Counters</option>
+                                    <option value="slider">Slider</option>                                    
                                     <option value="testimonial">Testimonials</option>
                                     <option value="category">Blog Category</option>
                                     <option value="blog">Blog Post</option>
                                     <option value="tag">Blog Tag</option>                                   
                                     <option value="admin">Admin </option>
-                                    <option value="image_preset">Image Preset </option>                                    
-                                    <option value="categories">Categories</option>
-                                    <option value="coached_organizations">Coached Organization</option>
-                                    <option value="can_provides">Can Provides</option>
-                                    <option value="coach_themes">Coach Themes</option>
-                                    <option value="coaches">Coaches</option>
-                                    <option value="coaching_methods">Coaching Methods</option>
-                                    <option value="held_positions">Held Positions</option>
-                                    <option value="languages">Languages</option>
-                                     <option value="locations">Location</option>
-                                      <option value="smtp">SMTP Setting</option>
+                                    <option value="image_preset">Image Preset </option>                                  
+                                    <option value="smtp">SMTP Setting</option>
                                     <option value="site">Site Setting</option>
                                     <option value="role">Role & Permission </option>
                                 </select>

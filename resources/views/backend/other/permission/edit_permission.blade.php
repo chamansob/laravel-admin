@@ -53,8 +53,7 @@
                                         Module </option>
                                     <option value="slider" {{ $permission->group_name == 'slider' ? 'selected' : '' }}>
                                         Slider </option>
-                                    <option value="counters" {{ $permission->group_name == 'counters' ? 'selected' : '' }}>
-                                        Counter </option>
+                                    
                                     <option value="testimonial"
                                         {{ $permission->group_name == 'testimonial' ? 'selected' : '' }}>
                                         Testimonials </option>
@@ -73,34 +72,8 @@
                                         Admin </option>
                                     <option value="image_preset"
                                         {{ $permission->group_name == 'image_preset' ? 'selected' : '' }}>
-                                        Image Preset </option>
-                                   
-                                    <option value="categories"
-                                        {{ $permission->group_name == 'categories' ? 'selected' : '' }}>Categories
-                                    </option>
-                                     <option value="coached_organizations"
-                                        {{ $permission->group_name == 'coached_organizations' ? 'selected' : '' }}>Coached Organization
-                                    </option>
-                                     <option value="can_provides"
-                                        {{ $permission->group_name == 'can_provides' ? 'selected' : '' }}>Can Provides
-                                    </option>
-                                    <option value="coach_themes"
-                                        {{ $permission->group_name == 'coach_themes' ? 'selected' : '' }}>Coach Themes
-                                    </option>
-                                    <option value="coaches"
-                                        {{ $permission->group_name == 'coaches' ? 'selected' : '' }}>Coaches </option>
-                                    <option value="coaching_methods"
-                                        {{ $permission->group_name == 'coaching_methods' ? 'selected' : '' }}>Coaching
-                                        Methods</option>
-                                    <option value="held_positions"
-                                        {{ $permission->group_name == 'held_positions' ? 'selected' : '' }}>Held
-                                        Positions</option>
-                                    <option value="languages"
-                                        {{ $permission->group_name == 'languages' ? 'selected' : '' }}>Languages
-                                    </option>
-                                    <option value="locations"
-                                        {{ $permission->group_name == 'locations' ? 'selected' : '' }}>Locations
-                                    </option>
+                                        Image Preset </option>                                   
+                                    
                                 </select>
                                 @error('group_name')
                                     <span class="text-danger pt-3">{{ $message }}</span>
