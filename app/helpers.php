@@ -4,7 +4,6 @@ use App\Models\Menu;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Str;
 
-<<<<<<< HEAD
 const MENUTYPE = ['Page', 'Url', 'External Page', 'Category'];
 const LOADER = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-loader spin ms-2">
                                         <line x1="12" y1="2" x2="12" y2="6"></line>
@@ -79,9 +78,6 @@ const STYLES = [
   'green-pantone',
   'amaranth',
 ];
-=======
-
->>>>>>> 0b7ded6902ce23d2f257045bb3d1614a5d6a5d31
 function active_class($path)
 {
   return (Route::getCurrentRoute()->uri == $path) ? 'active' : '';
@@ -111,40 +107,27 @@ function breadcrumb()
 
     if (count($n) == 2) {
       $url = "Show " . ucfirst(Str::headline(ucfirst($n[1])));
-<<<<<<< HEAD
     } elseif (count($n) == 3 || count($n) == 5) {
       $url = ucfirst($n[2]) . " " . ucfirst(Str::headline(ucfirst($n[1])));
-    }  else {
+    } else {
       if ($n[2] === 'admin') {
         $url = ucfirst($n[1]) . " " . ucfirst(Str::headline(ucfirst($n[2])));
       } else {
         $url = ucfirst($n[3]) . " " . ucfirst(Str::headline(ucfirst($n[1])));
       }
-=======
-    } elseif (count($n) == 3) {
-      $url = ucfirst($n[2]) . " " . ucfirst(Str::headline(ucfirst($n[1])));
-    } elseif (count($n) == 4) {
-      $url = ucfirst($n[1]) . " " . ucfirst(Str::headline(ucfirst($n[2])));
-    } else {
-      $url = ucfirst($n[3]) . " " . ucfirst(Str::headline(ucfirst($n[1])));
->>>>>>> 0b7ded6902ce23d2f257045bb3d1614a5d6a5d31
     }
   }
 
   return  $url;
 }
-<<<<<<< HEAD
 
 function urlgen($id)
 {
   $x = Menu::select('id', 'type', 'url')->find($id);
   return  $x->url;
-
 }
 
-function checkarr($id,$array)
+function checkarr($id, $array)
 {
   return in_array($id, $array) ? 'checked' : '';
 }
-=======
->>>>>>> 0b7ded6902ce23d2f257045bb3d1614a5d6a5d31
