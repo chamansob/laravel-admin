@@ -39,7 +39,7 @@
                                     <option value="module">Module</option>    
                                     <option value="slider">Slider</option>                                
                                     <option value="testimonials">Testimonials</option>                                   
-                                    <option value="category">Blog Category</option>
+                                     <option value="blogcategory">Blog Category</option>
                                     <option value="blog">Blog Post</option>     
                                     <option value="tag">Blog Tag</option>                                 
                                     <option value="smtp">SMTP Setting</option>

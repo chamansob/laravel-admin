@@ -49,9 +49,9 @@
                                         Menu Group </option>
                                     <option value="module" {{ $permission->group_name == 'module' ? 'selected' : '' }}>
                                         Module </option>
-                                    <option value="category"
-                                        {{ $permission->group_name == 'category' ? 'selected' : '' }}>
+                                      <option value="post" {{ $permission->group_name == 'blogcategory' ? 'selected' : '' }}>
                                         Blog Category</option>
+                                   
                                     <option value="post" {{ $permission->group_name == 'blog' ? 'selected' : '' }}>
                                         Blog Post</option>
                                         <option value="tag" {{ $permission->group_name == 'tag' ? 'selected' : '' }}>

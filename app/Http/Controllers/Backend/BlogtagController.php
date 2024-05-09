@@ -61,21 +61,22 @@ class BlogtagController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Blogtag $blogtag)
+    public function edit(Blogtag $tag)
     {
-        return view('backend.blog_tag.edit_tag', compact('blogtag'));
+       
+        return view('backend.blog_tag.edit_tag', compact('tag'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Blogtag $blogtag)
+    public function update(Request $request, Blogtag $tag)
     {
         $validated = $request->validate([
             'tag_name' => 'required|max:200',
         ]);
 
-        $blogtag->update([
+        $tag->update([
             'tag_name' => $request->tag_name,
             'tag_slug' => strtolower(str_replace(' ', '-', $request->tag_name)),
 
@@ -90,19 +91,15 @@ class BlogtagController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Blogtag $blogtag)
-    {
-
-        $blogtag->delete();
-        $notification = array(
-            'message' => 'Tag Deleted successfully',
-            'alert-type' => 'success',
-        );
-        return redirect()->back()->with($notification);
-    }
+    
     public function delete(Request $request)
     {
-        $blogtag = Blogtag::find($request->id);
+        if (is_array($request->id)) {
+            $blogtag = Blogtag::whereIn('id', $request->id);
+        } else {
+            $blogtag = Blogtag::find($request->id);
+        }
+       
 
         $blogtag->delete();
         $notification = array(

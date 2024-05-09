@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 
 use App\Models\Module;
 use App\Models\ImagePresets;
+use App\Traits\CommonTrait;
 use Illuminate\Http\Request;
 use App\Traits\ImageGenTrait;
 
@@ -15,10 +16,11 @@ class ModuleController extends Controller
     public $image_preset;
     public $image_preset_main;
     use ImageGenTrait;
+    use CommonTrait;
     public function __construct()
     {
         $this->image_preset = ImagePresets::whereIn('id', [4])->get();
-        $this->image_preset_main = ImagePresets::find(10);
+        $this->image_preset_main = ImagePresets::find(14);
     }
     /**
      * Display a listing of the resource.
@@ -95,14 +97,21 @@ class ModuleController extends Controller
             'name' => 'required|max:200',
         ]);
         if ($request->file('image') != null) {
+            if (file_exists($module->image)) {
+                $img = explode('.', $module->image);
+                $small_img = $img[0] . "_" . $this->image_preset[0]->name . "." . $img[1];
+                unlink($small_img);
+                unlink($module->image);
+            }
             $image = $request->file('image');
             $save_url = $this->imageGenrator($image, $this->image_preset_main, $this->image_preset, $this->path);
         } else {
-            if ($module->state_image != '') {
+            if ($module->image != '') {                
                 $save_url = $module->image;
             } else {
+                $save_url = '';
             }
-            $save_url = '';
+           
         }
         $module->update([
             'name' => $request->name,
@@ -119,32 +128,5 @@ class ModuleController extends Controller
         return redirect()->back()->with($notification);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function delete(Request $request)
-    {
-        $module = Module::find($request->id);
-        if (file_exists($module->image)) {
-            $img = explode('.', $module->image);
-            $small_img = $img[0] . "_" . $this->image_preset[0]->name . "." . $img[1];
-            unlink($small_img);
-            unlink($module->image);
-        } 
-        $module->delete();
-        $notification = array(
-            'message' => 'Module Deleted successfully',
-            'alert-type' => 'success',
-        );
-        return redirect()->back()->with($notification);
-    }
-    public function StatusUpdate(Request $request)
-    {
-        $module = Module::find($request->id);
-        $module->update([
-            'status' => ($module->status == 1) ? 0 : 1,
-        ]);
-
-        return ($module->status == 1) ? 'active' : 'deactive';
-    }
+    
 }

@@ -1,4 +1,5 @@
 <x-main-layout>
+    @section('title', breadcrumb())
     <div class="seperator-header layout-top-spacing">
         <a href="{{ route('menus.index') }}">
             <h4 class="">Show Menu</h4>
@@ -18,10 +19,13 @@
                             'files' => true,
                         ]) !!}
 
-                         <div class="mb-3">
+                        <div class="mb-3">
 
                             {!! Form::label('group_id', 'Menu Group', ['class' => 'form-label']) !!}
-                            {!! Form::select('group_id', $menugroup, $menu->group_id, ['class' => 'form-select mb-3', 'placeholder' => 'Menu Group']) !!}
+                            {!! Form::select('group_id', $menugroup, $menu->group_id, [
+                                'class' => 'form-select mb-3',
+                                'placeholder' => 'Menu Group',
+                            ]) !!}
                             @error('group_id')
                                 <span class="text-danger pt-3">{{ $message }}</span>
                             @enderror
@@ -41,7 +45,11 @@
                         <div class="mb-3">
 
                             {!! Form::label('title', 'Title', ['class' => 'form-label']) !!}
-                            {!! Form::text('title', $value = $menu->title, ['class' => 'form-control','required' => 'required', 'placeholder' => 'Title']) !!}
+                            {!! Form::text('title', $value = $menu->title, [
+                                'class' => 'form-control',
+                                'required' => 'required',
+                                'placeholder' => 'Title',
+                            ]) !!}
                             @error('title')
                                 <span class="text-danger pt-3">{{ $message }}</span>
                             @enderror
@@ -51,6 +59,12 @@
 
                             {!! Form::label('url', 'Url', ['class' => 'form-label']) !!}
                             {!! Form::text('url', $value = $menu->url, ['class' => 'form-control', 'placeholder' => 'Url']) !!}
+
+                        </div>
+                        <div class="mb-3">
+
+                            {!! Form::label('position', 'Position', ['class' => 'form-label']) !!}
+                            {!! Form::text('position', $value = $menu->position, ['class' => 'form-control', 'placeholder' => 'Position']) !!}
 
                         </div>
 
@@ -73,5 +87,5 @@
         </div>
 
     </div>
-   
+
 </x-main-layout>

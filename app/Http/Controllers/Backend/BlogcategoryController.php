@@ -58,21 +58,22 @@ class BlogcategoryController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Blogcategory $blogcategory)
+    public function edit(Blogcategory $category)
     {
-        return view('backend.blogcategory.edit_blogcategory', compact('Blogcategory'));
+       
+        return view('backend.blogcategory.edit_blogcategory', compact('category'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Blogcategory $blogcategory)
+    public function update(Request $request, Blogcategory $category)
     {
         $validated = $request->validate([
             'category_name' => 'required|max:200',
         ]);
 
-        $blogcategory->update([
+        $category->update([
             'category_name' => $request->category_name,
             'category_slug' => strtolower(str_replace(' ', '-', $request->category_name)),
 
@@ -87,24 +88,14 @@ class BlogcategoryController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Blogcategory $blogcategory)
+    public function destroy(Blogcategory $category)
     {
-        $blogcategory->delete();
+        $category->delete();
         $notification = array(
             'message' => 'Blog Category Deleted successfully',
             'alert-type' => 'success',
         );
         return redirect()->back()->with($notification);
     }
-    public function delete(Request $request)
-    {
-        $blogcat = Blogcategory::find($request->id);
-
-        $blogcat->delete();
-        $notification = array(
-            'message' => 'Tag Deleted successfully',
-            'alert-type' => 'success',
-        );
-        return redirect()->back()->with($notification);
-    }
+    
 }

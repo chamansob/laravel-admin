@@ -1,4 +1,5 @@
 <x-main-layout>
+    @section('title', breadcrumb())
     <div class="seperator-header layout-top-spacing">
         <a href="{{ route('menus.index') }}">
             <h4 class="">Show Menu</h4>
@@ -43,9 +44,7 @@
 
                             {!! Form::label('title', 'Title', ['class' => 'form-label']) !!}
                             {!! Form::text('title', $value = null, ['class' => 'form-control','required' => 'required', 'placeholder' => 'Title']) !!}
-                            @error('title')
-                                <span class="text-danger pt-3">{{ $message }}</span>
-                            @enderror
+                            
                         </div>
 
                         <div class="mb-3">

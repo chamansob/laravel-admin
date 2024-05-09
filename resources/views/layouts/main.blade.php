@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
      <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>{{ config('app.name', 'Laravel') }} </title>
+      <title>{{ config('app.name', 'Admin') }} - @yield('title') </title>
     <link rel="icon" type="image/x-icon" href="{{ asset('backend/assets/src/assets/img/favicon.ico')}}"/>
     <link href="{{ asset('backend/assets/layouts/vertical-light-menu/css/light/loader.css')}}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('backend/assets/layouts/vertical-light-menu/css/dark/loader.css')}}" rel="stylesheet" type="text/css" />
@@ -24,23 +24,32 @@
     <link href="{{ asset('backend/assets/src/plugins/src/apex/apexcharts.css')}}" rel="stylesheet" type="text/css">
     <link href="{{ asset('backend/assets/src/assets/css/light/dashboard/dash_1.css')}}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('backend/assets/src/assets/css/dark/dashboard/dash_1.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('backend/assets/src/assets/color.css')}}" rel="stylesheet" type="text/css">
     <!-- END PAGE LEVEL PLUGINS/CUSTOM STYLES -->
     <link href="{{ asset('backend/assets/src/assets/css/light/components/font-icons.css')}}" rel="stylesheet" type="text/css">
     <link href="{{ asset('backend/assets/src/assets/css/dark/components/font-icons.css')}}" rel="stylesheet" type="text/css">
     
-     <link href="{{ asset('backend/assets/src/assets/css/light/scrollspyNav.css')}}" rel="stylesheet" type="text/css" />
-      <link href="{{ asset('backend/assets/src/assets/css/light/scrollspyNav.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('backend/assets/src/assets/css/light/scrollspyNav.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('backend/assets/src/assets/css/light/scrollspyNav.css')}}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('backend/assets/src/plugins/src/sweetalerts2/sweetalerts2.css')}}" rel="stylesheet" type="text/css" >
     <link href="{{ asset('backend/assets/src/plugins/css/light/sweetalerts2/custom-sweetalert.css')}}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset('backend/assets//src/plugins/css/dark/sweetalerts2/custom-sweetalert.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('backend/assets/src/plugins/css/dark/sweetalerts2/custom-sweetalert.css')}}" rel="stylesheet" type="text/css" />
 
-    <link href="{{ asset('backend/assets/src/plugins/src/table/datatable/datatables.css')}}" rel="stylesheet" type="text/css">
-    <link href="{{ asset('backend/assets/src/plugins/css/light/table/datatable/dt-global_style.css')}}" rel="stylesheet" type="text/css">
-    <link href="{{ asset('backend/assets/src/plugins/css/light/table/datatable/custom_dt_miscellaneous.css')}}" rel="stylesheet" type="text/css">
-    <link href="{{ asset('backend/assets/src/plugins/css/dark/table/datatable/dt-global_style.css')}}" rel="stylesheet" type="text/css">
-    <link href="{{ asset('backend/assets/src/plugins/css/dark/table/datatable/custom_dt_miscellaneous.css')}}" rel="stylesheet" type="text/css">
+    <link  href="{{ asset('backend/assets/src/assets/css/light/forms/switches.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('backend/assets/src/assets/css/dark/forms/switches.css')}}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('backend/assets/src/plugins/src/select2/select2.min.css')}}" rel="stylesheet" type="text/css">
-    
+   
+<style>
+    .ck-editor__editable[role="textbox"] {
+                /* Editing area */
+                min-height: 200px;
+            }
+            .ck-content .image {
+                /* Block images */
+                max-width: 80%;
+                margin: 20px auto;
+            }
+</style>
    <!-- Scripts -->
      @vite(['resources/js/app.js'])
 </head>
@@ -129,6 +138,7 @@
             }
         @endif
     </script>
+    
  <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
  <script src="{{ asset('backend/assets/src/plugins/src/apex/apexcharts.min.js')}}"></script>
  <script src="{{ asset('backend/assets/src/assets/js/dashboard/dash_1.js')}}"></script>
@@ -140,20 +150,11 @@
     feather.replace();
 </script>
  <!-- BEGIN PAGE LEVEL SCRIPTS -->
-    <script src="{{ asset('backend/assets/src/plugins/src/table/datatable/datatables.js')}}"></script>
-    <script src="{{ asset('backend/assets/src/plugins/src/table/datatable/button-ext/dataTables.buttons.min.js')}}"></script>
-    <script src="{{ asset('backend/assets/src/plugins/src/table/datatable/button-ext/jszip.min.js')}}"></script>    
-    <script src="{{ asset('backend/assets/src/plugins/src/table/datatable/button-ext/buttons.html5.min.js')}}"></script>
-    <script src="{{ asset('backend/assets/src/plugins/src/table/datatable/button-ext/buttons.print.min.js')}}"></script>
-    <script src="{{ asset('backend/assets/src/plugins/src/table/datatable/custom_miscellaneous.js')}}"></script>
-
+   
     <script src="{{ asset('backend/assets/src/plugins/src/select2/select2.min.js')}}"></script>
-    <script src="{{ asset('backend/assets/src/plugins/src/select2/custom-select2.js')}}"></script>
-    <script>
-        $(".tagging").select2({
-    tags: true
-});
-</script>
-    <!-- END PAGE LEVEL SCRIPTS -->    
+   
+     
+    @yield('script') 
+             
 </body>
 </html>

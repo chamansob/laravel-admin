@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Page;
 use App\Models\Menu;
 use App\Models\ImagePresets;
+use App\Traits\CommonTrait;
 use Illuminate\Http\Request;
 use App\Traits\ImageGenTrait;
 
@@ -16,6 +17,7 @@ class PageController extends Controller
     public $image_preset;
     public $image_preset_main;
     use ImageGenTrait;
+    use CommonTrait;
     public function __construct()
     {
         $this->image_preset = ImagePresets::whereIn('id', [4])->get();
@@ -35,7 +37,9 @@ class PageController extends Controller
      */
     public function create()
     {
-        $menus=Menu::pluck('title','id');
+        $menus= Menu::join('pages', 'pages.id', '!=', 'menus.id')
+            ->where('menus.type', '=', 0)
+            ->pluck('menus.title', 'menus.id');
         return view('backend.pages.add_pages', compact('menus'));
     }
 
@@ -56,7 +60,7 @@ class PageController extends Controller
 
         Page::insert([
             'menu_id' => $request->menu_id,
-            'name' => $request->name,            
+            'name' => $request->name,                    
             'link' => $request->link,            
             'small_text' => $request->small_text,
             'image' =>  $save_url,
@@ -83,7 +87,7 @@ class PageController extends Controller
      */
     public function edit(Page $page)
     {
-        $menus = Menu::pluck('title', 'id');
+        $menus = Menu::with('page')->where('menus.type', 0)->pluck('menus.title', 'menus.id');
         return view('backend.pages.edit_pages', compact('page', 'menus'));
     }
 
@@ -96,18 +100,24 @@ class PageController extends Controller
             'name' => 'required|max:200',
         ]);
         if ($request->file('image') != null) {
+            if (file_exists($page->image)) {
+                $img = explode('.', $page->image);
+                $small_img = $img[0] . "_" . $this->image_preset[0]->name . "." . $img[1];
+                unlink($small_img);
+                unlink($page->image);
+            }
             $image = $request->file('image');
             $save_url = $this->imageGenrator($image, $this->image_preset_main, $this->image_preset, $this->path);
         } else {
-            if ($page->state_image != '') {
+            if ($page->image != '') {
                 $save_url = $page->image;
             } else {
+                $save_url = '';
             }
-            $save_url = '';
         }
         $page->update([
             'menu_id' => $request->menu_id,
-            'name' => $request->name,
+            'name' => $request->name,            
             'link' => $request->link,
             'small_text' => $request->small_text,
             'image' =>  $save_url,
@@ -120,33 +130,5 @@ class PageController extends Controller
         return redirect()->back()->with($notification);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function delete(Request $request)
-    {
-        $page = Page::find($request->id);
-        if (file_exists($page->image)) {
-            $img = explode('.', $page->image);
-            $small_img = $img[0] . "_" . $this->image_preset[0]->name . "." . $img[1];
-            unlink($small_img);           
-            unlink($page->image);
-        }        
-        $page->delete();
-        $notification = array(
-            'message' => 'Page Deleted successfully',
-            'alert-type' => 'success',
-        );
-        return redirect()->back()->with($notification);
-    }
-    public function StatusUpdate(Request $request)
-    {
-        $page = Page::find($request->id);
-
-        $page->update([
-            'status' => ($page->status == 1) ? 0 : 1,
-        ]);
-
-        return ($page->status == 1) ? 'active' : 'deactive';
-    }
+    
 }

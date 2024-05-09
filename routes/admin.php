@@ -24,6 +24,8 @@ Route::middleware(['auth', 'roles:admin'])->prefix('admin')->group(function () {
         Route::get('/dashboard', 'AdminDashboard')->name('admin.dashboard');
         // Admin User All Route 
         Route::get('/all/admin', 'AllAdmin')->name('all.admin');
+        Route::get('/user/ajax_load',  'Ajax_Load')->name('users.ajax_load');
+        Route::get('/all/users', 'AllUsers')->name('all.users');
         Route::get('/add/admin', 'AddAdmin')->name('add.admin');
         Route::post('/store/admin', 'StoreAdmin')->name('store.admin');
         Route::get('/edit/admin/{id}', 'EditAdmin')->name('edit.admin');
@@ -56,11 +58,13 @@ Route::middleware(['auth', 'roles:admin'])->prefix('admin')->group(function () {
     Route::resource('blog', BlogController::class)->middleware('can:blog.index, blog.create, blog.update');
     Route::post('/blog/status', [BlogController::class, 'StatusUpdate'])->middleware('can:blog.status')->name('blog.status');
     Route::post('/blog/delete', [BlogController::class, 'Delete'])->middleware('can:blog.delete')->name('blog.delete');
-
-    Route::resource('post/category', BlogcategoryController::class)->middleware('can:category.index, category.create, category.update');
-    Route::post('post/category/delete', [BlogcategoryController::class, 'Delete'])->middleware('can:category.delete')->name('category.delete');
+    
+    // Blog Categories All Routes
+    Route::resource('post/category', BlogcategoryController::class)->middleware('can:blogcategory.index, blogcategory.create, blogcategory.update');
+    Route::post('post/category/delete', [BlogcategoryController::class, 'Delete'])->middleware('can:blogcategory.delete')->name('category.delete');
     Route::resource('post/tag', BlogtagController::class)->middleware('can:tag.index, tag.create, tag.update');
     Route::post('post/tag/delete', [BlogtagController::class, 'Delete'])->middleware('can:tag.delete')->name('tag.delete');
+   
     // Image Preset All Routes
     Route::resource('image_preset', ImagePresetsController::class)->middleware('can:image_preset.index, image_preset.create, image_preset.update');
     Route::post('/image_preset/status', [ImagePresetsController::class, 'StatusUpdate'])->middleware('can:image_preset.status')->name('image_preset.status');

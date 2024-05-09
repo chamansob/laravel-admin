@@ -232,12 +232,12 @@
                                  <a href="{{ route('blog.index') }}"> {{ __('Show Blog') }} </a>
                              </li>
                          @endif
-                         @if (Auth::user()->can('category.create'))
+                        @if (Auth::user()->can('blogcategory.create'))
                              <li class="{{ active_class('admin/post/category/create') }}">
                                  <a href="{{ route('category.create') }}"> {{ __('Add Blog Category') }} </a>
                              </li>
                          @endif
-                         @if (Auth::user()->can('category.index'))
+                         @if (Auth::user()->can('blogcategory.index'))
                              <li class="{{ active_class('admin/post/category') }}">
                                  <a href="{{ route('category.index') }}"> {{ __('Show Blog Category') }} </a>
                              </li>

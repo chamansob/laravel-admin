@@ -1,8 +1,9 @@
 <x-main-layout>
+    @section('title', breadcrumb())
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
     <div class="seperator-header layout-top-spacing">
         <a href="{{ route('all.admin') }}">
-            <h4 class="">Show Staff</h4>
+            <h4 class="">Show User</h4>
         </a>
     </div>
 
@@ -15,77 +16,124 @@
                 <div class="card">
                     <div class="card-body">
 
-                        <h6 class="card-title fw-bold">Add Staff </h6>
-                        {{ Form::open(['route' => 'store.admin', 'class' => 'forms-sample needs-validation',
-                            'novalidate' => 'novalidate', 'method' => 'post']) }}
+                        <h6 class="card-title fw-bold">Add User </h6>
+                        {{ Form::open([
+                            'route' => 'store.admin',
+                            'class' => 'forms-sample needs-validation',
+                            'novalidate' => 'novalidate',
+                            'method' => 'post',
+                            'files' => true,
+                        ]) }}
                         <div class="row">
 
                             <div class="mb-3">
+                                {!! Form::label('image', 'Photo', ['class' => 'form-label']) !!}
 
-                                {!! Form::label('username', 'User Name', ['class' => 'form-label']) !!}
-
-                                {!! Form::text('username', $value = null, ['class' => 'form-control','required' => 'required', 'placeholder' => 'User Name']) !!}
-                                @error('username')
+                                {!! Form::file('image', [
+                                    'class' => 'form-control',
+                                    'placeholder' => 'Main Thumbnail',
+                                    'onchange' => 'mainThamUrl(this)',
+                                ]) !!}
+                                @error('image')
                                     <span class="text-danger pt-3">{{ $message }}</span>
                                 @enderror
-
-
+                                <img src="" id="mainThmb">
 
                             </div>
 
                         </div>
                         <div class="row">
-                            <div class="mb-3">
-                                {!! Form::label('name', 'Full Name', ['class' => 'form-label']) !!}
+                            <div class="col-sm-6">
+                                <div class="mb-3">
 
-                                {!! Form::text('name', $value = null, ['class' => 'form-control','required' => 'required', 'placeholder' => 'Full Name']) !!}
-                                @error('name')
-                                    <span class="text-danger pt-3">{{ $message }}</span>
-                                @enderror
+                                    {!! Form::label('username', 'User Name', ['class' => 'form-label']) !!}
+
+                                    {!! Form::text('username', $value = null, [
+                                        'class' => 'form-control',
+                                        'required' => 'required',
+                                        'placeholder' => 'User Name',
+                                    ]) !!}
+                                    @error('username')
+                                        <span class="text-danger pt-3">{{ $message }}</span>
+                                    @enderror
+
+
+
+                                </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="mb-3">
-                                {!! Form::label('email', 'Email', ['class' => 'form-label']) !!}
+                            <div class="col-sm-6">
+                                <div class="mb-3">
+                                    {!! Form::label('name', 'Full Name', ['class' => 'form-label']) !!}
 
-                                {!! Form::text('email', $value = null, ['class' => 'form-control','required' => 'required', 'placeholder' => 'Email']) !!}
-                                @error('email')
-                                    <span class="text-danger pt-3">{{ $message }}</span>
-                                @enderror
+                                    {!! Form::text('name', $value = null, [
+                                        'class' => 'form-control',
+                                        'required' => 'required',
+                                        'placeholder' => 'Full Name',
+                                    ]) !!}
+                                    @error('name')
+                                        <span class="text-danger pt-3">{{ $message }}</span>
+                                    @enderror
+                                </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="mb-3">
-                                {!! Form::label('phone', 'Phone', ['class' => 'form-label']) !!}
-
-                                {!! Form::text('phone', $value = null, ['class' => 'form-control', 'placeholder' => 'Phone']) !!}
-                                @error('phone')
-                                    <span class="text-danger pt-3">{{ $message }}</span>
-                                @enderror
-                            </div>
-                        </div>
 
 
-                        <div class="row">
-                            <div class="mb-3">
-                                {!! Form::label('address', 'Address', ['class' => 'form-label']) !!}
-
-                                {!! Form::text('address', $value = null, ['class' => 'form-control', 'placeholder' => 'Address']) !!}
-                                @error('address')
-                                    <span class="text-danger pt-3">{{ $message }}</span>
-                                @enderror
-                            </div>
                         </div>
 
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="mb-3">
+                                    {!! Form::label('email', 'Email', ['class' => 'form-label']) !!}
+
+                                    {!! Form::text('email', $value = null, [
+                                        'class' => 'form-control',
+                                        'required' => 'required',
+                                        'placeholder' => 'Email',
+                                    ]) !!}
+                                    @error('email')
+                                        <span class="text-danger pt-3">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6">
+                                <div class="mb-3">
+                                    {!! Form::label('phone', 'Phone', ['class' => 'form-label']) !!}
+
+                                    {!! Form::text('phone', $value = null, ['class' => 'form-control', 'placeholder' => 'Phone']) !!}
+                                    @error('phone')
+                                        <span class="text-danger pt-3">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                            </div>
+                        </div>
+
 
                         <div class="row">
-                            <div class="mb-3">
-                                {!! Form::label('password', 'Password', ['class' => 'form-label']) !!}
+                            <div class="col-sm-6">
+                                <div class="mb-3">
+                                    {!! Form::label('address', 'Address', ['class' => 'form-label']) !!}
 
-                                {!! Form::password('password',  ['class' => 'form-control','required' => 'required', 'placeholder' => 'Password']) !!}
-                                @error('password')
-                                    <span class="text-danger pt-3">{{ $message }}</span>
-                                @enderror
+                                    {!! Form::text('address', $value = null, ['class' => 'form-control', 'placeholder' => 'Address']) !!}
+                                    @error('address')
+                                        <span class="text-danger pt-3">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                            </div>
+
+
+                            <div class="col-sm-6">
+                                <div class="mb-3">
+                                    {!! Form::label('password', 'Password', ['class' => 'form-label']) !!}
+
+                                    {!! Form::password('password', [
+                                        'class' => 'form-control',
+                                        'required' => 'required',
+                                        'placeholder' => 'Password',
+                                    ]) !!}
+                                    @error('password')
+                                        <span class="text-danger pt-3">{{ $message }}</span>
+                                    @enderror
+                                </div>
                             </div>
                         </div>
 
@@ -93,7 +141,7 @@
                             <div class="mb-3">
                                 {!! Form::label('roles', 'Role Name', ['class' => 'form-label']) !!}
 
-                                {!! Form::select('roles', $value = $roles,null, ['class' => 'form-control', 'placeholder' => 'Select Roles']) !!}
+                                {!! Form::select('roles', $value = $roles, null, ['class' => 'form-control', 'placeholder' => 'Select Roles']) !!}
                                 @error('roles')
                                     <span class="text-danger pt-3">{{ $message }}</span>
                                 @enderror
@@ -119,4 +167,15 @@
         </div>
 
     </div>
+    <script type="text/javascript">
+        function mainThamUrl(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    $('#mainThmb').attr('src', e.target.result).width(80).height(80);
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+    </script>
 </x-main-layout>

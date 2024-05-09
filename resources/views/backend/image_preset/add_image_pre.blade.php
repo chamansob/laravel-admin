@@ -1,4 +1,6 @@
 <x-main-layout>
+     @section('title', breadcrumb())
+    @section('title', breadcrumb())
     <div class="seperator-header layout-top-spacing">
         <a href="{{ route('image_preset.index') }}">
             <h4 class="">Show All Image Preset</h4>
