@@ -24,10 +24,7 @@
                                     <tr>
                                         <th>Sl </th>
                                         <th>Image</th>
-<<<<<<< HEAD
                                         <th>Top</th>
-=======
->>>>>>> 0b7ded6902ce23d2f257045bb3d1614a5d6a5d31
                                         <th>Name</th>
                                         <th>Email</th>
                                         <th>Phone</th>
@@ -95,12 +92,9 @@
                             "data": "image"
                         },
                         {
-<<<<<<< HEAD
                             "data": "top"
                         },
                         {
-=======
->>>>>>> 0b7ded6902ce23d2f257045bb3d1614a5d6a5d31
                             "data": "name"
                         },
                         {

@@ -51,19 +51,9 @@
                                         Menu Group </option>
                                     <option value="module" {{ $permission->group_name == 'module' ? 'selected' : '' }}>
                                         Module </option>
-<<<<<<< HEAD
                                       <option value="post" {{ $permission->group_name == 'blogcategory' ? 'selected' : '' }}>
                                         Blog Category</option>
                                    
-=======
-                                    <option value="slider" {{ $permission->group_name == 'slider' ? 'selected' : '' }}>
-                                        Slider </option>
-                                    
-                                    <option value="testimonial"
-                                        {{ $permission->group_name == 'testimonial' ? 'selected' : '' }}>
-                                        Testimonials </option>
-                                    Blog Category</option>
->>>>>>> 0b7ded6902ce23d2f257045bb3d1614a5d6a5d31
                                     <option value="post" {{ $permission->group_name == 'blog' ? 'selected' : '' }}>
                                         Blog Post</option>
                                     <option value="tag" {{ $permission->group_name == 'tag' ? 'selected' : '' }}>

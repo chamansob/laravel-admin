@@ -307,9 +307,6 @@
         }
         
     </script>
-<<<<<<< HEAD
        
     @stop
-=======
->>>>>>> 0b7ded6902ce23d2f257045bb3d1614a5d6a5d31
 </x-dashboard-layout>

@@ -33,7 +33,6 @@
                             <div class="mb-3">
                                 {!! Form::label('plan_heading', 'Permission Heading', ['class' => 'form-label']) !!}
                                 <select name="group_name" class="form-select" id="exampleFormControlSelect1">
-<<<<<<< HEAD
                                     <option selected="" disabled="">Select Group</option>  
                                     <option value="menus">Menu </option>   
                                     <option value="menugroup">Menu Group </option>           
@@ -44,20 +43,6 @@
                                      <option value="blogcategory">Blog Category</option>
                                     <option value="blog">Blog Post</option>     
                                     <option value="tag">Blog Tag</option>                                 
-=======
-                                    <option selected="" disabled="">Select Group</option>
-                                    <option value="menus">Menu </option>
-                                    <option value="menugroup">Menu Group </option>
-                                    <option value="pages">Pages </option>
-                                    <option value="module">Module</option>
-                                    <option value="slider">Slider</option>                                    
-                                    <option value="testimonial">Testimonials</option>
-                                    <option value="category">Blog Category</option>
-                                    <option value="blog">Blog Post</option>
-                                    <option value="tag">Blog Tag</option>                                   
-                                    <option value="admin">Admin </option>
-                                    <option value="image_preset">Image Preset </option>                                  
->>>>>>> 0b7ded6902ce23d2f257045bb3d1614a5d6a5d31
                                     <option value="smtp">SMTP Setting</option>
                                     <option value="site">Site Setting</option>
                                     <option value="role">Role & Permission </option>

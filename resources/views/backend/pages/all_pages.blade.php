@@ -62,12 +62,8 @@
                                                     <i data-feather="edit"></i>
                                                 </a>
 
-<<<<<<< HEAD
                                                 <a href="javascript:void(0)"
                                                     onClick="deleteFunction({{ $page->id }},'Page')"
-=======
-                                                <a href="#" onClick="deleteFunction({{ $page->id }},'Page')"
->>>>>>> 0b7ded6902ce23d2f257045bb3d1614a5d6a5d31
                                                     class="action-btn btn-edit bs-tooltip me-2 delete{{ $page->id }}"
                                                     data-toggle="tooltip" data-placement="top" title="Delete"
                                                     data-bs-original-title="Delete">
@@ -83,12 +79,8 @@
                         </table>
                         @if ($pages->count() != 0)
                             <div class="ms-3">
-<<<<<<< HEAD
                                 <button id="deleteall" onClick="deleteAllFunction('Page')"
                                     class="btn btn-danger mb-2 me-4">
-=======
-                                <button id="deleteall" onClick="deleteAllFunction('Page')" class="btn btn-danger mb-2 me-4">
->>>>>>> 0b7ded6902ce23d2f257045bb3d1614a5d6a5d31
                                     <span class="btn-text-inner">Delete Selected</span>
                                 </button>
                             </div>
@@ -104,11 +96,7 @@
     </div>
     @if ($pages->count() != 0)
         <script type="text/javascript">
-<<<<<<< HEAD
             function deleteAllFunction(table) {
-=======
-           function deleteAllFunction(table)  {
->>>>>>> 0b7ded6902ce23d2f257045bb3d1614a5d6a5d31
                 // Get all checkboxes with the specified class name
                 var checkboxes = document.querySelectorAll('.mixed_child');
                 // Initialize an array to store checked checkbox values
@@ -139,23 +127,15 @@
                     var crf = '{{ csrf_token() }}';
                     $.post("{{ route('pages.delete') }}", {
                         _token: crf,
-<<<<<<< HEAD
                         id: checkedValues,
                         table: table
-=======
-                        id: checkedValues,table:table
->>>>>>> 0b7ded6902ce23d2f257045bb3d1614a5d6a5d31
                     }, function(data) {
                         toastr.success("Selected Data Deleted");
                     });
                 }
             }
 
-<<<<<<< HEAD
             function statusFunction(id, table) {
-=======
-            function statusFunction(id,table) {
->>>>>>> 0b7ded6902ce23d2f257045bb3d1614a5d6a5d31
                 // event.preventDefault(); // prevent form submit
                 // var form = event.target.form; // storing the form
                 const swalWithBootstrapButtons = Swal.mixin({
@@ -186,12 +166,8 @@
                                 var crf = '{{ csrf_token() }}';
                                 $.post("{{ route('pages.status') }}", {
                                     _token: crf,
-<<<<<<< HEAD
                                     id: id,
                                     table: table
-=======
-                                    id: id,table:table
->>>>>>> 0b7ded6902ce23d2f257045bb3d1614a5d6a5d31
                                 }, function(data) {
                                     var elems = document.querySelector('.warning.changestatus' +
                                         id);
@@ -258,12 +234,8 @@
                             var crf = '{{ csrf_token() }}';
                             $.post("{{ route('pages.delete') }}", {
                                 _token: crf,
-<<<<<<< HEAD
                                 id: id,
                                 table: table
-=======
-                                id: id,table:table
->>>>>>> 0b7ded6902ce23d2f257045bb3d1614a5d6a5d31
                             }, function(data) {
                                 toastr.success("Entry no " + id + " Deleted");
                             });

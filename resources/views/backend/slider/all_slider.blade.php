@@ -61,12 +61,8 @@
                                                     <i data-feather="edit"></i>
                                                 </a>
 
-<<<<<<< HEAD
                                                 <a href="javascript:void(0)"
  onClick="deleteFunction({{ $slider->id }},'Slider')"
-=======
-                                                <a href="#" onClick="deleteFunction({{ $slider->id }},'Slider')"
->>>>>>> 0b7ded6902ce23d2f257045bb3d1614a5d6a5d31
                                                     class="action-btn btn-edit bs-tooltip me-2 delete{{ $slider->id }}"
                                                     data-toggle="tooltip" data-placement="top" title="Delete"
                                                     data-bs-original-title="Delete">

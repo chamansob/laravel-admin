@@ -24,10 +24,7 @@ Route::middleware(['auth', 'roles:admin'])->prefix('admin')->group(function () {
         Route::get('/dashboard', 'AdminDashboard')->name('admin.dashboard');
         // Admin User All Route 
         Route::get('/all/admin', 'AllAdmin')->name('all.admin');
-<<<<<<< HEAD
         Route::get('/user/ajax_load',  'Ajax_Load')->name('users.ajax_load');
-=======
->>>>>>> 0b7ded6902ce23d2f257045bb3d1614a5d6a5d31
         Route::get('/all/users', 'AllUsers')->name('all.users');
         Route::get('/add/admin', 'AddAdmin')->name('add.admin');
         Route::post('/store/admin', 'StoreAdmin')->name('store.admin');

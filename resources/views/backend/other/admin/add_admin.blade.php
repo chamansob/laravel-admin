@@ -22,16 +22,12 @@
                             'class' => 'forms-sample needs-validation',
                             'novalidate' => 'novalidate',
                             'method' => 'post',
-<<<<<<< HEAD
                             'files' => true,
-=======
->>>>>>> 0b7ded6902ce23d2f257045bb3d1614a5d6a5d31
                         ]) }}
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="mb-3">
 
-<<<<<<< HEAD
                             <div class="mb-3">
                                 {!! Form::label('image', 'Photo', ['class' => 'form-label']) !!}
 
@@ -44,20 +40,6 @@
                                     <span class="text-danger pt-3">{{ $message }}</span>
                                 @enderror
                                 <img src="" id="mainThmb">
-=======
-                                    {!! Form::label('username', 'User Name', ['class' => 'form-label']) !!}
-
-                                    {!! Form::text('username', $value = null, [
-                                        'class' => 'form-control',
-                                        'required' => 'required',
-                                        'placeholder' => 'User Name',
-                                    ]) !!}
-                                    @error('username')
-                                        <span class="text-danger pt-3">{{ $message }}</span>
-                                    @enderror
-
-
->>>>>>> 0b7ded6902ce23d2f257045bb3d1614a5d6a5d31
 
                                 </div>
                             </div>
@@ -76,7 +58,6 @@
                                 </div>
                             </div>
 
-<<<<<<< HEAD
                         </div>
                         <div class="row">
                             <div class="col-sm-6">
@@ -135,31 +116,6 @@
                                 <div class="mb-3">
                                     {!! Form::label('phone', 'Phone', ['class' => 'form-label']) !!}
 
-=======
-
-                        </div>
-
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <div class="mb-3">
-                                    {!! Form::label('email', 'Email', ['class' => 'form-label']) !!}
-
-                                    {!! Form::text('email', $value = null, [
-                                        'class' => 'form-control',
-                                        'required' => 'required',
-                                        'placeholder' => 'Email',
-                                    ]) !!}
-                                    @error('email')
-                                        <span class="text-danger pt-3">{{ $message }}</span>
-                                    @enderror
-                                </div>
-                            </div>
-
-                            <div class="col-sm-6">
-                                <div class="mb-3">
-                                    {!! Form::label('phone', 'Phone', ['class' => 'form-label']) !!}
-
->>>>>>> 0b7ded6902ce23d2f257045bb3d1614a5d6a5d31
                                     {!! Form::text('phone', $value = null, ['class' => 'form-control', 'placeholder' => 'Phone']) !!}
                                     @error('phone')
                                         <span class="text-danger pt-3">{{ $message }}</span>
