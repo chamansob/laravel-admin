@@ -1,4 +1,5 @@
 <x-main-layout>
+    @section('title', breadcrumb())
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
     <div class="seperator-header layout-top-spacing">
@@ -38,23 +39,34 @@
                         <div class="row">
 
                             <div class="mb-3">
-                                {!! Form::label('plan_heading', 'Plan Heading', ['class' => 'form-label']) !!}
+                                {!! Form::label('plan_heading', 'Permission Heading', ['class' => 'form-label']) !!}
                                 <select name="group_name" class="form-select" id="exampleFormControlSelect1">
                                     <option selected="" disabled="">Select Group</option>
-                                     <option value="pages" {{ $permission->group_name == 'pages' ? 'selected' : '' }}>
+                                    <option value="pages" {{ $permission->group_name == 'pages' ? 'selected' : '' }}>
                                         Pages </option>
-                                         <option value="menu" {{ $permission->group_name == 'menu' ? 'selected' : '' }}>
+                                    <option value="menu" {{ $permission->group_name == 'menu' ? 'selected' : '' }}>
                                         Menu </option>
-                                         <option value="menugroup" {{ $permission->group_name == 'menugroup' ? 'selected' : '' }}>
+                                    <option value="menugroup"
+                                        {{ $permission->group_name == 'menugroup' ? 'selected' : '' }}>
                                         Menu Group </option>
                                     <option value="module" {{ $permission->group_name == 'module' ? 'selected' : '' }}>
                                         Module </option>
+<<<<<<< HEAD
                                       <option value="post" {{ $permission->group_name == 'blogcategory' ? 'selected' : '' }}>
                                         Blog Category</option>
                                    
+=======
+                                    <option value="slider" {{ $permission->group_name == 'slider' ? 'selected' : '' }}>
+                                        Slider </option>
+                                    
+                                    <option value="testimonial"
+                                        {{ $permission->group_name == 'testimonial' ? 'selected' : '' }}>
+                                        Testimonials </option>
+                                    Blog Category</option>
+>>>>>>> 0b7ded6902ce23d2f257045bb3d1614a5d6a5d31
                                     <option value="post" {{ $permission->group_name == 'blog' ? 'selected' : '' }}>
                                         Blog Post</option>
-                                        <option value="tag" {{ $permission->group_name == 'tag' ? 'selected' : '' }}>
+                                    <option value="tag" {{ $permission->group_name == 'tag' ? 'selected' : '' }}>
                                         Blog Tag</option>
                                     <option value="smtp" {{ $permission->group_name == 'smtp' ? 'selected' : '' }}>
                                         SMTP Setting</option>
@@ -64,8 +76,10 @@
                                         Role & Permission </option>
                                     <option value="role" {{ $permission->group_name == 'admin' ? 'selected' : '' }}>
                                         Admin </option>
-                                    <option value="image_preset" {{ $permission->group_name == 'image_preset' ? 'selected' : '' }}>
-                                        Image Preset </option>
+                                    <option value="image_preset"
+                                        {{ $permission->group_name == 'image_preset' ? 'selected' : '' }}>
+                                        Image Preset </option>                                   
+                                    
                                 </select>
                                 @error('group_name')
                                     <span class="text-danger pt-3">{{ $message }}</span>
@@ -115,4 +129,4 @@
             });
         });
     </script>
-</x-main-layout>
+</x-dashboard-layout>

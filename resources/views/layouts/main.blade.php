@@ -152,9 +152,12 @@
  <!-- BEGIN PAGE LEVEL SCRIPTS -->
    
     <script src="{{ asset('backend/assets/src/plugins/src/select2/select2.min.js')}}"></script>
-   
-     
-    @yield('script') 
-             
+    <script src="{{ asset('backend/assets/src/plugins/src/select2/custom-select2.js')}}"></script>
+    <script>
+        $(".tagging").select2({
+    tags: true
+});
+</script>
+    <!-- END PAGE LEVEL SCRIPTS -->    
 </body>
 </html>

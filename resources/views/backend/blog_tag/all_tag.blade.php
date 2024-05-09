@@ -40,8 +40,12 @@
                                                         data-bs-original-title="Edit">
                                                         <i data-feather="edit"></i>
                                                     </a>
+<<<<<<< HEAD
                                                     <a href="javascript:void(0)"
  onClick="deleteFunction({{ $tag->id }},'Tag')"
+=======
+                                                    <a href="#" onClick="deleteFunction({{ $tag->id }},'Tag')"
+>>>>>>> 0b7ded6902ce23d2f257045bb3d1614a5d6a5d31
                                                         class="action-btn btn-edit bs-tooltip me-2 delete{{ $tag->id }}"
                                                         data-toggle="tooltip" data-placement="top" title="Delete"
                                                         data-bs-original-title="Delete">

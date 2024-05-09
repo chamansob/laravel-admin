@@ -56,8 +56,12 @@
                                                         data-bs-original-title="Edit">
                                                         <i data-feather="edit"></i>
                                                     </a>
+<<<<<<< HEAD
                                                     <a href="javascript:void(0)"
                                                         onClick="deleteFunction({{ $post->id }},'Blog')"
+=======
+                                                    <a href="#" onClick="deleteFunction({{ $post->id }},'Blog')"
+>>>>>>> 0b7ded6902ce23d2f257045bb3d1614a5d6a5d31
                                                         class="action-btn btn-edit bs-tooltip me-2 delete{{ $post->id }}"
                                                         data-toggle="tooltip" data-placement="top" title="Delete"
                                                         data-bs-original-title="Delete">
@@ -120,16 +124,25 @@
                     var crf = '{{ csrf_token() }}';
                     $.post("{{ route('blog.delete') }}", {
                         _token: crf,
+<<<<<<< HEAD
                         id: checkedValues,
                         table: table,
                         table: table
+=======
+                        id: checkedValues,table:table,
+                        table:table
+>>>>>>> 0b7ded6902ce23d2f257045bb3d1614a5d6a5d31
                     }, function(data) {
                         toastr.success("Selected Data Deleted");
                     });
                 }
             }
 
+<<<<<<< HEAD
             function deleteFunction(id, table) {
+=======
+            function deleteFunction(id,table) {
+>>>>>>> 0b7ded6902ce23d2f257045bb3d1614a5d6a5d31
 
                 // event.preventDefault(); // prevent form submit
                 // var form = event.target.form; // storing the form
@@ -163,9 +176,14 @@
                                 var crf = '{{ csrf_token() }}';
                                 $.post("{{ route('blog.delete') }}", {
                                     _token: crf,
+<<<<<<< HEAD
                                     id: id,
                                     table: table,
                                     table: table
+=======
+                                    id: id,table:table,
+                                    table:table
+>>>>>>> 0b7ded6902ce23d2f257045bb3d1614a5d6a5d31
                                 }, function(data) {
                                     toastr.success("Entry no " + id + " Deleted");
                                 });
@@ -182,8 +200,12 @@
                             )
                         }
                     })
+<<<<<<< HEAD
                 })
             }
+=======
+                }) }
+>>>>>>> 0b7ded6902ce23d2f257045bb3d1614a5d6a5d31
         </script>
     @endif
 </x-dashboard-layout>

@@ -329,6 +329,11 @@
                                  <a href="{{ route('all.admin') }}"> {{ __('Show Staff') }} </a>
                              </li>
                          @endif
+                        @if (Auth::user()->can('all.users'))
+                             <li class="{{ active_class('admin/users') }}">
+                                 <a href="{{ route('all.users') }}"> {{ __('Show Users') }} </a>
+                             </li>
+                         @endif
                      </ul>
                  </li>
              @endif

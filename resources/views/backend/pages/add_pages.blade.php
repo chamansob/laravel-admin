@@ -90,6 +90,7 @@
     </div>
 
     </div>
+<<<<<<< HEAD
      @section('script')
     <script src="https://cdn.ckeditor.com/ckeditor5/41.1.0/super-build/ckeditor.js"></script>
     <script>
@@ -247,3 +248,6 @@
         </script> 
     @stop
 </x-main-layout>
+=======
+</x-ma-layout>
+>>>>>>> 0b7ded6902ce23d2f257045bb3d1614a5d6a5d31

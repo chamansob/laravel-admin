@@ -1,0 +1,12 @@
+<x-error-layout>
+  @section('title', '404 - Page not found')
+<div class="container-fluid error-content">
+        <div class="">
+            <h1 class="error-number">404</h1>
+            <p class="mini-text">You Missed</p>
+            <p class="error-text mb-5 mt-1">The page you are looking for doesn't exist </p>
+            <img src="{{ asset('backend/assets/src/assets/img/error.svg') }}" alt="cork-admin-404" class="error-img">
+            <a href="{{ url('/') }}" class="btn btn-dark mt-5">Go Back</a>
+        </div>
+    </div>
+</x-error-layout>

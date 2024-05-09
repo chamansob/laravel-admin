@@ -23,10 +23,26 @@
                             'files' => true,
                         ]) !!}
                         <div class="row">
+<<<<<<< HEAD
                             <div class="col-sm-10">
                                 <div class="mb-3">
 
                                     {!! Form::label('image', 'Image', ['class' => 'form-label']) !!}
+=======
+                            <div class="col-sm-6">
+                                <div class="mb-3">
+
+                                    {!! Form::label('username', 'User Name', ['class' => 'form-label']) !!}
+
+                                    {!! Form::text('username', $value = $user->username, [
+                                        'class' => 'form-control',
+                                        'required' => 'required',
+                                        'placeholder' => 'User Name',
+                                    ]) !!}
+                                    @error('username')
+                                        <span class="text-danger pt-3">{{ $message }}</span>
+                                    @enderror
+>>>>>>> 0b7ded6902ce23d2f257045bb3d1614a5d6a5d31
 
                                     {!! Form::file('image', [
                                         'class' => 'form-control',
@@ -42,6 +58,7 @@
 
 
                                 </div>
+<<<<<<< HEAD
                             </div>
                             @php
                                 if (!empty($user->photo)) {
@@ -74,6 +91,10 @@
                                 </div>
 
                             </div>
+=======
+
+                            </div>
+>>>>>>> 0b7ded6902ce23d2f257045bb3d1614a5d6a5d31
                             <div class="col-sm-6">
                                 <div class="mb-3">
                                     {!! Form::label('name', 'Full Name', ['class' => 'form-label']) !!}
@@ -147,7 +168,11 @@
                             <div class="mb-3">
                                 {!! Form::label('roles', 'Role Name', ['class' => 'form-label']) !!}
 
+<<<<<<< HEAD
                                 {!! Form::select('roles', $value = $roles, $user->role == 'admin' ? $user->roles[0]->id : 4, [
+=======
+                                {!! Form::select('roles', $value = $roles, ($user->role=='admin')? $user->roles[0]->id : 4, [
+>>>>>>> 0b7ded6902ce23d2f257045bb3d1614a5d6a5d31
                                     'class' => 'form-control',
                                     'placeholder' => 'Select Roles',
                                 ]) !!}
@@ -198,6 +223,7 @@
         </div>
 
     </div>
+<<<<<<< HEAD
     <script type="text/javascript">
         function mainThamUrl(input) {
             if (input.files && input.files[0]) {
@@ -210,3 +236,6 @@
         }
     </script>
     </x-dashboard-layout>
+=======
+</x-dashboard-layout>
+>>>>>>> 0b7ded6902ce23d2f257045bb3d1614a5d6a5d31

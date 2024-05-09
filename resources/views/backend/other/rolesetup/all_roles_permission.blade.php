@@ -1,4 +1,5 @@
-<x-main-layout>
+<x-dashboard-layout>
+    @section('title', breadcrumb())
     <div class="seperator-header layout-top-spacing">
         <a href="{{ route('roles.create') }}">
             <h4 class="">Add Roles</h4>
@@ -97,7 +98,7 @@
                             var crf = '{{ csrf_token() }}';
                             $.post("{{ route('admin.delete.roles') }}", {
                                 _token: crf,
-                                id: id
+                                id: id,table:table
                             }, function(data) {
                                 toastr.success("Entry no " + id + " Deleted");
                             });
@@ -121,4 +122,4 @@
             }
         </script>
     @endif
-</x-main-layout>
+</x-dashboard-layout>
